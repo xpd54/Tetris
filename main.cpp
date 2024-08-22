@@ -1,3 +1,4 @@
+#include "env/constant.h"
 #include <chrono>
 #include <curses.h>
 #include <iostream>
@@ -7,10 +8,13 @@
 int main() {
   std::string hello("=");
   WINDOW *window = initscr(); // Initialize the ncurses mode
-  for (size_t i = 10; i < 30; ++i) {
-    for (size_t j = 10; j < 30; ++j) {
-      mvaddch(i, j, 'x');
+  for (size_t i = SCREEN_OFFSET; i <= SCREEN_HEIGHT; ++i) {
+    mvaddch(i, SCREEN_OFFSET, BOUNDARY_PIXEL);
+    for (size_t j = SCREEN_OFFSET + 1; j < SCREEN_WIDTH; ++j) {
+      char pixel = i < SCREEN_HEIGHT ? EMPTY_PIXEL : BOUNDARY_PIXEL;
+      mvaddch(i, j, pixel);
     }
+    addstr("#");
   }
   while (1) {
     std::this_thread::sleep_for(
