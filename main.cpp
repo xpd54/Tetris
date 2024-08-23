@@ -6,7 +6,7 @@
 #include <thread>
 
 int main() {
-  std::string hello("=");
+  std::string hello("===>");
   WINDOW *window = initscr(); // Initialize the ncurses mode
   for (size_t i = SCREEN_OFFSET; i <= SCREEN_HEIGHT; ++i) {
     mvaddch(i, SCREEN_OFFSET, BOUNDARY_PIXEL);
@@ -16,12 +16,17 @@ int main() {
     }
     addstr("#");
   }
+  refresh();
+  int j = 0;
   while (1) {
     std::this_thread::sleep_for(
         std::chrono::milliseconds(500)); // Refresh to show changes
     // hello.insert(0, "=");
-    addstr(hello.c_str());
+    // addstr(hello.c_str());
+    mvaddstr(0, j, hello.c_str());
     refresh();
+    clear();
+    j++;
   }
   getch();  // Wait for user input
   endwin(); // End ncurses mode
