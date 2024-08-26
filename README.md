@@ -1,4 +1,4 @@
-# Tetris
+# Tetris Game with Ascii Character
 
 Simple Tetris game in c++
 
