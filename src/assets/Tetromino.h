@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <utility>
 /* Shape defines how a perticular Tetromino should be rendered on screen.*/
 enum class Shape {
   /*
@@ -65,10 +66,10 @@ private:
 
 public:
   Tetromino(Shape s, Rotation r = Rotation::Zero) : shape(s), rotation(r){};
-  void move_up();
   void move_down();
   void move_left();
   void move_right();
+  std::pair<size_t, size_t> get_co_ordinate();
   void rotate(Rotation &r);
   ~Tetromino();
 };
