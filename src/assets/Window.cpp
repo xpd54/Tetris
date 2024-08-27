@@ -1,10 +1,10 @@
 #include "Window.h"
+#include "../util/ErrorMessage.h"
 #include <curses.h>
 #include <iostream>
 void Window::draw() {
   if (stdscr == nullptr) {
-    std::cout << "initscr() or initialization of curses library wasn't done."
-              << "\n";
+    std::cerr << CURSES_LIBRARY_NOT_INITIALIZED;
     return;
   }
   for (size_t i = SCREEN_OFFSET; i <= SCREEN_HEIGHT; ++i) {
@@ -16,4 +16,8 @@ void Window::draw() {
     addch(BOUNDARY_PIXEL);
   }
   refresh();
+}
+
+bool Window::draw_a_tetro(Tetromino &tetro) {
+  // check if location of tetromino is in the boundry of window
 }

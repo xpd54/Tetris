@@ -71,5 +71,6 @@ public:
   void move_right();
   std::pair<size_t, size_t> get_co_ordinate();
   void rotate(Rotation &r);
+  void draw(size_t, size_t);
   ~Tetromino();
 };
