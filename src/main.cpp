@@ -1,11 +1,10 @@
+#include "assets/Window.h"
 #include "env/constant.h"
 #include <chrono>
 #include <curses.h>
 #include <iostream>
-#include <ncurses.h>
 #include <thread>
-
-int main() {
+/*int main() {
   std::string hello("===>");
   WINDOW *window = initscr(); // Initialize the ncurses mode
   for (size_t i = SCREEN_OFFSET; i <= SCREEN_HEIGHT; ++i) {
@@ -30,5 +29,38 @@ int main() {
   }
   getch();  // Wait for user input
   endwin(); // End ncurses mode
+  return 0;
+}*/
+
+#include <ncurses.h>
+#include <string.h>
+
+int main() {
+  // Initialize the ncurses library
+  initscr();
+  curs_set(0); // Hide the cursor
+  Window win;
+  win.draw();
+  // Print some lines of text
+  mvprintw(5, 10, "Line 1");
+  mvprintw(6, 10, "Line 2");
+  mvprintw(7, 10, "Line 3");
+  mvprintw(8, 10, "Line 4");
+  mvprintw(9, 10, "Line 5");
+  refresh();
+
+  // Get the entire line at row 3 (line 4)
+  char line[80];
+  mvwinnstr(stdscr, 7, 10, line, sizeof(line) - 1);
+
+  // Print the line
+  mvprintw(11, 10, "Line 4: %s", line);
+  refresh();
+
+  // Wait for a key press
+  getch();
+
+  // Terminate the ncurses library
+  endwin();
   return 0;
 }
