@@ -20,4 +20,5 @@ void Window::draw() {
 
 bool Window::draw_a_tetro(Tetromino &tetro) {
   // check if location of tetromino is in the boundry of window
+  return true;
 }
