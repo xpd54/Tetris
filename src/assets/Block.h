@@ -1,3 +1,4 @@
+#pragma once
 #include "Tetromino.h"
 /* Shape defines how a perticular Tetromino should be rendered on screen.*/
 enum class Shape {
