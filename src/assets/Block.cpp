@@ -12,10 +12,10 @@ void Block::draw_at_position(size_t, size_t) const {
  * left corner and (3,3) is at lower right corner. In this case when we have a 4
  * co-ordinate points for a shape (all shapes are made of 4 points only) we can
  * rotate our frame of reference to and get the co-ordinate of given points.
- * 90˚ rotation (x, y) -> (maxY - y, x)
- * 180˚ rotation (x, y) -> ((maxY - x), maxX - y)
- * 270˚ rotation (x, y) -> (y, maxX - x)
- * 360˚/ 0˚ rotation (x, Y) -> (x, y)
+ * 90° rotation (x, y) -> (maxY - y, x)
+ * 180° rotation (x, y) -> ((maxY - x), maxX - y)
+ * 270° rotation (x, y) -> (y, maxX - x)
+ * 360°/ 0° rotation (x, Y) -> (x, y)
  * */
 void Block::rotate(Rotation &r) {
   std::pair<int, int> co_ordinate = get_co_ordinate();
