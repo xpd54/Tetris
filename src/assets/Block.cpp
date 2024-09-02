@@ -1,5 +1,8 @@
 #include "Block.h"
+#include <iostream>
 #include <vector>
+/*function to generate the block co-ordinates*/
+std::vector<std::pair<int, int>> getBlock(int x, int y, Shape shape);
 
 Block::Block(Shape &_shape, Rotation _rotation)
     : Tetromino(), shape(_shape), rotation(_rotation) {}
@@ -21,15 +24,34 @@ void Block::rotate(Rotation &r) {
   std::pair<int, int> co_ordinate = get_co_ordinate();
   std::vector<std::pair<int, int>> block =
       getBlock(co_ordinate.first, co_ordinate.second, shape);
+  size_t maxX = co_ordinate.first + 3;
+  size_t maxY = co_ordinate.second + 3;
   switch (r) {
   case Rotation::Ninety:
+    for (auto &value : block) {
+      size_t x = value.first;
+      size_t y = value.second;
+      value = {(maxY - y), x};
+    }
     break;
   case Rotation::OneEighty:
+    for (auto &value : block) {
+      size_t x = value.first;
+      size_t y = value.second;
+      value = {(maxY - x), (maxX - y)};
+    }
     break;
   case Rotation::TwoSeventy:
+    for (auto &value : block) {
+      size_t x = value.first;
+      size_t y = value.second;
+      value = {y, (maxX - x)};
+    }
     break;
   default:
-    Rotation::Zero;
+    std::cout << "This would be no rotation or 360"
+              << "\n";
+    break;
   }
 }
 
