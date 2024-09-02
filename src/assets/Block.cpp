@@ -13,6 +13,10 @@ void Block::draw_at_position(size_t x, size_t y) const {
   std::vector<std::pair<int, int>> block = getBlock(x, y, shape);
   for (auto &value : block) {
     mvaddch(value.second, value.first, BLOCK_PIXEX);
+    /* we can use string based block in future for now co-ordinate getBlock has
+     * been calibarated for 1 char only
+     * mvprintw(value.second, value.first, BLOCK_PIXEX);
+     */
   }
 };
 
