@@ -1,3 +1,4 @@
+#include "assets/Block.h"
 #include "assets/Window.h"
 #include "env/constant.h"
 #include <chrono>
@@ -41,21 +42,23 @@ int main() {
   curs_set(0); // Hide the cursor
   Window win;
   win.draw();
+  Block first_block(Shape::Lblock);
+  first_block.draw_at_position(20, 30);
   // Print some lines of text
-  mvprintw(5, 10, "Line 1");
-  mvprintw(6, 10, "Line 2");
-  mvprintw(7, 10, "Line 3");
-  mvprintw(8, 10, "Line 4");
-  mvprintw(9, 10, "Line 5");
+  // mvprintw(5, 10, "Line 1");
+  // mvprintw(6, 10, "Line 2");
+  // mvprintw(7, 10, "Line 3");
+  // mvprintw(8, 10, "Line 4");
+  // mvprintw(9, 10, "Line 5");
   refresh();
 
   // Get the entire line at row 3 (line 4)
-  char line[80];
-  mvwinnstr(stdscr, 7, 10, line, sizeof(line) - 1);
+  // char line[80];
+  // mvwinnstr(stdscr, 7, 10, line, sizeof(line) - 1);
 
   // Print the line
-  mvprintw(11, 10, "Line 4: %s", line);
-  refresh();
+  // mvprintw(11, 10, "Line 4: %s", line);
+  // refresh();
 
   // Wait for a key press
   getch();

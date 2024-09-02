@@ -3,3 +3,4 @@
 #define SCREEN_HEIGHT 30 + SCREEN_OFFSET
 #define BOUNDARY_PIXEL '#'
 #define EMPTY_PIXEL ' '
+#define BLOCK_PIXEX 'X'

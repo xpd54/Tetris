@@ -51,7 +51,7 @@ enum class Shape {
 
 class Block : Tetromino {
 public:
-  Block(Shape &_shape, Rotation _rotation = Rotation::Zero);
+  Block(Shape _shape, Rotation _rotation = Rotation::Zero);
   void rotate(Rotation &r);
   void draw_at_position(size_t x, size_t y) const override;
   Rotation &get_rotation() const;

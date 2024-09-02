@@ -27,5 +27,5 @@ public:
    * methods are in public specifire cause object of derived class will only
    * have access to public member. */
   virtual void draw_at_position(size_t, size_t) const = 0;
-  ~Tetromino();
+  ~Tetromino() = default;
 };

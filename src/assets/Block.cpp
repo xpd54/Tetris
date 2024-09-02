@@ -1,14 +1,19 @@
 #include "Block.h"
+#include "../env/constant.h"
+#include <curses.h>
 #include <iostream>
 #include <vector>
 /*function to generate the block co-ordinates*/
 std::vector<std::pair<int, int>> getBlock(int x, int y, Shape shape);
 
-Block::Block(Shape &_shape, Rotation _rotation)
+Block::Block(Shape _shape, Rotation _rotation)
     : Tetromino(), shape(_shape), rotation(_rotation) {}
 
-void Block::draw_at_position(size_t, size_t) const {
-
+void Block::draw_at_position(size_t x, size_t y) const {
+  std::vector<std::pair<int, int>> block = getBlock(x, y, shape);
+  for (auto &value : block) {
+    mvaddch(value.second, value.first, BLOCK_PIXEX);
+  }
 };
 
 /* We can consider all shape as 4X4 metrix where co-ordinate (0,0) is at upper
