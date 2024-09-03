@@ -9,6 +9,12 @@ enum class Rotation {
   TwoSeventy,
 };
 
+enum class Move_Direction {
+  DOWN,
+  LEFT,
+  RIGHT,
+};
+
 class Tetromino {
 private:
   size_t x;
@@ -28,7 +34,6 @@ public:
    * location.*/
   virtual void draw() const = 0;
 
-  virtual void move_down(size_t number_of_time = 1);
-  virtual void move_left(size_t number_of_time = 1);
-  virtual void move_right(size_t number_of_time = 1);
+  virtual void move(size_t number_of_time = 1,
+                    Move_Direction direction = Move_Direction::DOWN);
 };

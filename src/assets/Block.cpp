@@ -26,6 +26,10 @@ void Block::draw_at_position(size_t x, size_t y) const {
   }
 };
 
+void Block::move(size_t number_of_time, Move_Direction direction) {
+  move(number_of_time, direction);
+}
+
 /* We can consider all shape as 4X4 metrix where co-ordinate (0,0) is at upper
  * left corner and (3,3) is at lower right corner. In this case when we have a 4
  * co-ordinate points for a shape (all shapes are made of 4 points only) we can
@@ -106,3 +110,5 @@ std::vector<std::pair<int, int>> getBlock(int x, int y, Shape shape) {
   }
   return pixel_co_ordinates;
 }
+
+bool is_gonna_collied() {}

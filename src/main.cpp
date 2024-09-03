@@ -50,9 +50,9 @@ int main() {
   // first_block.rotate(Rotation::OneEighty);
   // first_block.draw_at_position(20, 20);
   // first_block.rotate(Rotation::TwoSeventy);
-  first_block.move_down(20);
-  first_block.move_right(20);
-  first_block.move_left(876);
+  first_block.move(20, Move_Direction::DOWN);
+  first_block.move(20, Move_Direction::RIGHT);
+  first_block.move(876, Move_Direction::LEFT);
   first_block.draw();
 
   // Print some lines of text

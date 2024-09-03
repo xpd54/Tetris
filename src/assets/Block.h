@@ -55,10 +55,7 @@ public:
   Block(Shape _shape, Rotation _rotation = Rotation::Zero);
   virtual void draw_at_position(size_t x, size_t y) const override;
   virtual void draw() const override;
-
-  virtual void move_down(size_t number_of_time = 1) override;
-  virtual void move_left(size_t number_of_time = 1) override;
-  virtual void move_right(size_t number_of_time = 1) override;
+  virtual void move(size_t number_of_time, Move_Direction direction) override;
 
   void rotate(Rotation r);
   Rotation &get_rotation() const;
