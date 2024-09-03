@@ -43,7 +43,14 @@ int main() {
   Window win;
   win.draw();
   Block first_block(Shape::Lblock);
+  // first_block.draw_at_position(20, 30);
   first_block.draw_at_position(20, 30);
+  first_block.rotate(Rotation::Ninety);
+  first_block.draw_at_position(30, 30);
+  first_block.rotate(Rotation::OneEighty);
+  first_block.draw_at_position(20, 20);
+  first_block.rotate(Rotation::TwoSeventy);
+  first_block.draw_at_position(30, 20);
   // Print some lines of text
   // mvprintw(5, 10, "Line 1");
   // mvprintw(6, 10, "Line 2");

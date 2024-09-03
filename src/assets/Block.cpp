@@ -7,12 +7,14 @@
 std::vector<std::pair<int, int>> getBlock(int x, int y, Shape shape);
 
 Block::Block(Shape _shape, Rotation _rotation)
-    : Tetromino(), shape(_shape), rotation(_rotation) {}
+    : Tetromino(), shape(_shape), rotation(_rotation) {
+  block_co_ordinates =
+      getBlock(get_co_ordinate().first, get_co_ordinate().second, shape);
+}
 
 void Block::draw_at_position(size_t x, size_t y) const {
-  std::vector<std::pair<int, int>> block = getBlock(x, y, shape);
-  for (auto &value : block) {
-    mvaddch(value.second, value.first, BLOCK_PIXEX);
+  for (auto &value : block_co_ordinates) {
+    mvaddch(value.second + y, value.first + x, BLOCK_PIXEX);
     /* we can use string based block in future for now co-ordinate getBlock has
      * been calibarated for 1 char only
      * mvprintw(value.second, value.first, BLOCK_PIXEX);
@@ -29,29 +31,27 @@ void Block::draw_at_position(size_t x, size_t y) const {
  * 270° rotation (x, y) -> (y, maxX - x)
  * 360°/ 0° rotation (x, Y) -> (x, y)
  * */
-void Block::rotate(Rotation &r) {
+void Block::rotate(Rotation r) {
   std::pair<int, int> co_ordinate = get_co_ordinate();
-  std::vector<std::pair<int, int>> block =
-      getBlock(co_ordinate.first, co_ordinate.second, shape);
   size_t maxX = co_ordinate.first + 3;
   size_t maxY = co_ordinate.second + 3;
   switch (r) {
   case Rotation::Ninety:
-    for (auto &value : block) {
+    for (auto &value : block_co_ordinates) {
       size_t x = value.first;
       size_t y = value.second;
       value = {(maxY - y), x};
     }
     break;
   case Rotation::OneEighty:
-    for (auto &value : block) {
+    for (auto &value : block_co_ordinates) {
       size_t x = value.first;
       size_t y = value.second;
       value = {(maxY - x), (maxX - y)};
     }
     break;
   case Rotation::TwoSeventy:
-    for (auto &value : block) {
+    for (auto &value : block_co_ordinates) {
       size_t x = value.first;
       size_t y = value.second;
       value = {y, (maxX - x)};

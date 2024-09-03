@@ -1,5 +1,6 @@
 #pragma once
 #include "Tetromino.h"
+#include <vector>
 /* Shape defines how a perticular Tetromino should be rendered on screen.*/
 enum class Shape {
   /*
@@ -52,11 +53,12 @@ enum class Shape {
 class Block : Tetromino {
 public:
   Block(Shape _shape, Rotation _rotation = Rotation::Zero);
-  void rotate(Rotation &r);
+  void rotate(Rotation r);
   void draw_at_position(size_t x, size_t y) const override;
   Rotation &get_rotation() const;
 
 private:
   const Shape shape;
+  std::vector<std::pair<int, int>> block_co_ordinates;
   Rotation rotation;
 };
