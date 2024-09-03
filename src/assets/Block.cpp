@@ -27,6 +27,8 @@ void Block::draw_at_position(size_t x, size_t y) const {
 };
 
 void Block::move(size_t number_of_time, Direction direction) {
+  /* explicitly calling base class move method with namespace or it will end up
+   * calling it self with run time error. sigfault*/
   Tetromino::move(number_of_time, direction);
 }
 
