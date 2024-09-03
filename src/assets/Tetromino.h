@@ -9,7 +9,7 @@ enum class Rotation {
   TwoSeventy,
 };
 
-enum class Move_Direction {
+enum class Direction {
   DOWN,
   LEFT,
   RIGHT,
@@ -23,8 +23,7 @@ private:
 public:
   /*Let other members get initialized by default will change to mid location
    * later*/
-  Tetromino(size_t _x = SCREEN_OFFSET, size_t _y = SCREEN_OFFSET)
-      : x(_x), y(_y) {}
+  Tetromino(size_t _x = 0, size_t _y = 0) : x(_x), y(_y) {}
   std::pair<size_t, size_t> get_co_ordinate() const;
   /* Pure virtual so we can't have objec tof Tetromino class. but as these
    * methods are in public specifire cause object of derived class will only
@@ -35,5 +34,5 @@ public:
   virtual void draw() const = 0;
 
   virtual void move(size_t number_of_time = 1,
-                    Move_Direction direction = Move_Direction::DOWN);
+                    Direction direction = Direction::DOWN);
 };

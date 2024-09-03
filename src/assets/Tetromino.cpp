@@ -3,12 +3,12 @@
 #include <curses.h>
 #include <iostream>
 
-void Tetromino::move(size_t number_of_time, Move_Direction direction) {
+void Tetromino::move(size_t number_of_time, Direction direction) {
   switch (direction) {
-  case Move_Direction::LEFT:
+  case Direction::LEFT:
     (x >= number_of_time) ? (x -= number_of_time) : (x = 0);
     break;
-  case Move_Direction::RIGHT:
+  case Direction::RIGHT:
     x += number_of_time;
   default:
     y += number_of_time;

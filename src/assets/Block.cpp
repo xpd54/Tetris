@@ -26,8 +26,8 @@ void Block::draw_at_position(size_t x, size_t y) const {
   }
 };
 
-void Block::move(size_t number_of_time, Move_Direction direction) {
-  move(number_of_time, direction);
+void Block::move(size_t number_of_time, Direction direction) {
+  Tetromino::move(number_of_time, direction);
 }
 
 /* We can consider all shape as 4X4 metrix where co-ordinate (0,0) is at upper
