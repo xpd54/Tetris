@@ -12,6 +12,10 @@ Block::Block(Shape _shape, Rotation _rotation)
       getBlock(get_co_ordinate().first, get_co_ordinate().second, shape);
 }
 
+void Block::draw() const {
+  draw_at_position(get_co_ordinate().first, get_co_ordinate().second);
+}
+
 void Block::draw_at_position(size_t x, size_t y) const {
   for (auto &value : block_co_ordinates) {
     mvaddch(value.second + y, value.first + x, BLOCK_PIXEX);
