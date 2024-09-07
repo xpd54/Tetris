@@ -4,31 +4,33 @@
 #include <iostream>
 #include <vector>
 /*function to generate the block co-ordinates*/
-std::vector<std::pair<int, int>> getBlock(int x, int y, Shape shape);
-
+std::vector<std::pair<int, int>> get_block(int x, int y, Shape shape);
 Block::Block(Shape _shape, Rotation _rotation)
     : Tetromino(), shape(_shape), rotation(_rotation) {
   block_co_ordinates =
-      getBlock(get_co_ordinate().first, get_co_ordinate().second, shape);
+      get_block(get_co_ordinate().first, get_co_ordinate().second, shape);
 }
 
 void Block::draw() const {
   draw_at_position(get_co_ordinate().first, get_co_ordinate().second);
 }
 
-void Block::draw_at_position(size_t x, size_t y) const {
+void Block::draw_at_position(int x, int y) const {
   for (auto &value : block_co_ordinates) {
     mvaddch(value.second + y, value.first + x, BLOCK_PIXEX);
-    /* we can use string based block in future for now co-ordinate getBlock has
+    /* we can use string based block in future for now co-ordinate get_block has
      * been calibarated for 1 char only
      * mvprintw(value.second, value.first, BLOCK_PIXEX);
      */
   }
 };
 
-void Block::move(size_t number_of_time, Direction direction) {
+void Block::move(int number_of_time, Direction direction) {
   /* explicitly calling base class move method with namespace or it will end up
    * calling it self with run time error. sigfault*/
+
+  // before moving check if it's gonna collide with windows or other Tetromino.
+  will_collied_on_move(direction);
   Tetromino::move(number_of_time, direction);
 }
 
@@ -43,27 +45,27 @@ void Block::move(size_t number_of_time, Direction direction) {
  * */
 void Block::rotate(Rotation r) {
   std::pair<int, int> co_ordinate = get_co_ordinate();
-  size_t maxX = co_ordinate.first + 3;
-  size_t maxY = co_ordinate.second + 3;
+  int maxX = co_ordinate.first + 3;
+  int maxY = co_ordinate.second + 3;
   switch (r) {
   case Rotation::Ninety:
     for (auto &value : block_co_ordinates) {
-      size_t x = value.first;
-      size_t y = value.second;
+      int x = value.first;
+      int y = value.second;
       value = {(maxY - y), x};
     }
     break;
   case Rotation::OneEighty:
     for (auto &value : block_co_ordinates) {
-      size_t x = value.first;
-      size_t y = value.second;
+      int x = value.first;
+      int y = value.second;
       value = {(maxY - x), (maxX - y)};
     }
     break;
   case Rotation::TwoSeventy:
     for (auto &value : block_co_ordinates) {
-      size_t x = value.first;
-      size_t y = value.second;
+      int x = value.first;
+      int y = value.second;
       value = {y, (maxX - x)};
     }
     break;
@@ -74,7 +76,7 @@ void Block::rotate(Rotation r) {
   }
 }
 
-std::vector<std::pair<int, int>> getBlock(int x, int y, Shape shape) {
+std::vector<std::pair<int, int>> get_block(int x, int y, Shape shape) {
   std::vector<std::pair<int, int>> pixel_co_ordinates;
   switch (shape) {
 
@@ -113,4 +115,35 @@ std::vector<std::pair<int, int>> getBlock(int x, int y, Shape shape) {
   return pixel_co_ordinates;
 }
 
-bool is_gonna_collied() {}
+std::vector<std::pair<int, int>>
+Block::get_moved_co_ordinate(Direction direction) {
+  std::vector<std::pair<int, int>> moved_location;
+  switch (direction) {
+  case Direction::LEFT:
+    for (const auto &value : block_co_ordinates)
+      moved_location.push_back(
+          {(value.first > 0 ? value.first - 1 : 0), value.second});
+    break;
+  case Direction::RIGHT:
+    for (const auto &value : block_co_ordinates) {
+      moved_location.push_back({value.first + 1, value.second});
+    }
+    break;
+
+  case Direction::DOWN:
+    for (const auto &value : block_co_ordinates) {
+      moved_location.push_back({value.first, value.second + 1});
+    }
+    break;
+  default:
+    break;
+  }
+}
+
+bool Block::will_collied_on_move(Direction direction) {
+  auto co_ordinate = get_moved_co_ordinate(direction);
+  for (auto value : co_ordinate) {
+    std::cout << value.first << " " << value.second << "\n";
+  }
+  return true;
+}

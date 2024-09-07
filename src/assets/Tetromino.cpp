@@ -3,7 +3,7 @@
 #include <curses.h>
 #include <iostream>
 
-void Tetromino::move(size_t number_of_time, Direction direction) {
+void Tetromino::move(int number_of_time, Direction direction) {
   switch (direction) {
   case Direction::LEFT:
     (x >= number_of_time) ? (x -= number_of_time) : (x = 0);
@@ -16,4 +16,4 @@ void Tetromino::move(size_t number_of_time, Direction direction) {
   }
 }
 
-std::pair<size_t, size_t> Tetromino::get_co_ordinate() const { return {x, y}; }
+std::pair<int, int> Tetromino::get_co_ordinate() const { return {x, y}; }
