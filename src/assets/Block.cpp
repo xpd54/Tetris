@@ -1,5 +1,6 @@
 #include "Block.h"
 #include "../env/constant.h"
+#include <algorithm>
 #include <curses.h>
 #include <iostream>
 #include <vector>
@@ -138,12 +139,16 @@ Block::get_moved_co_ordinate(Direction direction) {
   default:
     break;
   }
+  return moved_location;
 }
 
 bool Block::will_collied_on_move(Direction direction) {
   auto co_ordinate = get_moved_co_ordinate(direction);
-  for (auto value : co_ordinate) {
-    std::cout << value.first << " " << value.second << "\n";
-  }
+  // check if there are charctor at moved location
+  // scan
+  bool have_space = std::all_of(
+      co_ordinate.begin(), co_ordinate.end(), [](std::pair<int, int> value) {
+        return mvgetch(value.second, value.first) != EMPTY_PIXEL;
+      });
   return true;
 }
