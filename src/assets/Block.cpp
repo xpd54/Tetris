@@ -31,8 +31,12 @@ void Block::move(int number_of_time, Direction direction) {
    * calling it self with run time error. sigfault*/
 
   // before moving check if it's gonna collide with windows or other Tetromino.
-  will_collied_on_move(direction);
-  Tetromino::move(number_of_time, direction);
+  // std::cout << "--------->" << will_collied_on_move(direction) << std::endl;
+  if (!will_collied_on_move(direction))
+    Tetromino::move(number_of_time, direction);
+  else {
+    std::cout << "--------->" << std::endl;
+  }
 }
 
 /* We can consider all shape as 4X4 metrix where co-ordinate (0,0) is at upper
@@ -148,7 +152,7 @@ bool Block::will_collied_on_move(Direction direction) {
   // scan
   bool have_space = std::all_of(
       co_ordinate.begin(), co_ordinate.end(), [](std::pair<int, int> value) {
-        return mvgetch(value.second, value.first) != EMPTY_PIXEL;
+        return mvinch(value.second, value.first) != EMPTY_PIXEL;
       });
-  return true;
+  return have_space;
 }

@@ -47,6 +47,8 @@ int main() {
   // first_block.draw_at_position(20, 30);
   first_block.rotate(Rotation::Ninety);
   first_block.move(2, Direction::DOWN);
+  first_block.move(7, Direction::RIGHT);
+  first_block.move(4, Direction::DOWN);
   first_block.draw();
 
   // Print some lines of text
