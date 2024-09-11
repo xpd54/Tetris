@@ -10,7 +10,8 @@ void Tetromino::move(int number_of_time, Direction direction) {
     break;
   case Direction::RIGHT:
     x += number_of_time;
-  default:
+    break;
+  case Direction::DOWN:
     y += number_of_time;
     break;
   }
