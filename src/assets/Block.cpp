@@ -150,9 +150,9 @@ bool Block::will_collied_on_move(Direction direction) {
   auto co_ordinate = get_moved_co_ordinate(direction);
   // check if there are charctor at moved location
   // scan
-  bool have_space = std::none_of(
+  bool have_space = std::all_of(
       co_ordinate.begin(), co_ordinate.end(), [](const std::pair<int, int> &value) {
-        return mvinch(value.second, value.first) != EMPTY_PIXEL;
+        return mvinch(value.second, value.first) == EMPTY_PIXEL;
       });
-  return have_space;
+  return !have_space;
 }
