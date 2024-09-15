@@ -89,7 +89,8 @@ std::vector<std::pair<int, int>> get_block(int x, int y, Shape shape) {
     break;
 
   case Shape::Jblock:
-    pixel_co_ordinates = {{x, y}, {x, y + 1}, {x, y + 2}, {x - 1, y + 2}};
+    pixel_co_ordinates = {
+        {x + 1, y}, {x + 1, y + 1}, {x + 1, y + 2}, {x, y + 2}};
     break;
 
   case Shape::Lblock:
