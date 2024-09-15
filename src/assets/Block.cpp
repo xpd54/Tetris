@@ -26,14 +26,13 @@ void Block::draw_at_position(int x, int y) const {
   }
 };
 
-void Block::move(int number_of_time, Direction direction) {
+void Block::move(Direction direction, int number_of_time) {
   /* explicitly calling base class move method with namespace or it will end up
    * calling it self with run time error. sigfault*/
 
   // before moving check if it's gonna collide with windows or other Tetromino.
-  // std::cout << "--------->" << will_collied_on_move(direction) << std::endl;
-  if (!will_collied_on_move(direction))
-    Tetromino::move(number_of_time, direction);
+  if (!will_collied_on_move(direction, number_of_time))
+    Tetromino::move(direction, number_of_time);
   else {
     std::cout << "--------->" << std::endl;
   }
@@ -121,23 +120,25 @@ std::vector<std::pair<int, int>> get_block(int x, int y, Shape shape) {
 }
 
 std::vector<std::pair<int, int>>
-Block::get_moved_co_ordinate(Direction direction) {
+Block::get_moved_co_ordinate(Direction direction, int number_of_time) {
   std::vector<std::pair<int, int>> moved_location;
   switch (direction) {
   case Direction::LEFT:
     for (const auto &value : block_co_ordinates)
       moved_location.push_back(
-          {(value.first > 0 ? value.first - 1 : 0), value.second});
+          {(value.first - number_of_time > 0 ? value.first - number_of_time
+                                             : 0),
+           value.second});
     break;
   case Direction::RIGHT:
     for (const auto &value : block_co_ordinates) {
-      moved_location.push_back({value.first + 1, value.second});
+      moved_location.push_back({value.first + number_of_time, value.second});
     }
     break;
 
   case Direction::DOWN:
     for (const auto &value : block_co_ordinates) {
-      moved_location.push_back({value.first, value.second + 1});
+      moved_location.push_back({value.first, value.second + number_of_time});
     }
     break;
   default:
@@ -146,13 +147,13 @@ Block::get_moved_co_ordinate(Direction direction) {
   return moved_location;
 }
 
-bool Block::will_collied_on_move(Direction direction) {
-  auto co_ordinate = get_moved_co_ordinate(direction);
+bool Block::will_collied_on_move(Direction direction, int number_of_time) {
+  auto co_ordinate = get_moved_co_ordinate(direction, number_of_time);
   // check if there are charctor at moved location
-  // scan
-  bool have_space = std::all_of(
-      co_ordinate.begin(), co_ordinate.end(), [](const std::pair<int, int> &value) {
-        return mvinch(value.second, value.first) == EMPTY_PIXEL;
-      });
+  bool have_space =
+      std::all_of(co_ordinate.begin(), co_ordinate.end(),
+                  [](const std::pair<int, int> &value) {
+                    return mvinch(value.second, value.first) == EMPTY_PIXEL;
+                  });
   return !have_space;
 }

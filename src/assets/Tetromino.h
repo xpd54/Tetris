@@ -33,6 +33,6 @@ public:
    * location.*/
   virtual void draw() const = 0;
 
-  virtual void move(int number_of_time = 1,
-                    Direction direction = Direction::DOWN);
+  virtual void move(Direction direction = Direction::DOWN,
+                    int number_of_time = 1);
 };

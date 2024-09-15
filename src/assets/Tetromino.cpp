@@ -3,7 +3,7 @@
 #include <curses.h>
 #include <iostream>
 
-void Tetromino::move(int number_of_time, Direction direction) {
+void Tetromino::move(Direction direction, int number_of_time) {
   switch (direction) {
   case Direction::LEFT:
     (x >= number_of_time) ? (x -= number_of_time) : (x = 0);

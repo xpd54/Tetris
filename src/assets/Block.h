@@ -55,7 +55,7 @@ public:
   Block(Shape _shape, Rotation _rotation = Rotation::Zero);
   virtual void draw_at_position(int x, int y) const override;
   virtual void draw() const override;
-  virtual void move(int number_of_time, Direction direction) override;
+  virtual void move(Direction direction, int number_of_time) override;
 
   void rotate(Rotation r);
   Rotation &get_rotation() const;
@@ -63,7 +63,8 @@ public:
 private:
   const Shape shape;
   std::vector<std::pair<int, int>> block_co_ordinates;
-  std::vector<std::pair<int, int>> get_moved_co_ordinate(Direction direction);
-  bool will_collied_on_move(Direction direction);
+  std::vector<std::pair<int, int>>
+  get_moved_co_ordinate(Direction direction, int number_of_time = 1);
+  bool will_collied_on_move(Direction direction, int number_of_time = 1);
   Rotation rotation;
 };
