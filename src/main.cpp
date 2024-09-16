@@ -41,14 +41,15 @@ int main() {
   curs_set(0); // Hide the cursor
   Window win;
   win.draw();
-  Block first_block(Shape::Oblock);
-  // first_block.move(Direction::RIGHT, 8);
-  // are you saving from the last move?
-  first_block.move();
-  first_block.draw();
-  refresh();
-  getch();
 
+  Block first_block(Shape::Oblock);
+  while (1) {
+    std::this_thread::sleep_for(
+        std::chrono::milliseconds(500)); // Refresh to show changes
+    first_block.move();
+    first_block.draw();
+    refresh();
+  }
   // Terminate the ncurses library
   endwin();
   return 0;

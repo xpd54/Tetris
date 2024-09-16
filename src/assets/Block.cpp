@@ -29,7 +29,8 @@ void Block::move(Direction direction, int number_of_time) {
   if (!will_collied_on_move(move_co_ordinate)) {
     block_co_ordinates = move_co_ordinate;
   } else {
-    std::cout << "collision" << std::endl;
+    // std::cout << "collision" << std::endl;
+    block_co_ordinates = move_co_ordinate;
   }
 }
 
@@ -145,26 +146,13 @@ Block::get_moved_co_ordinate(Direction direction, int number_of_time) {
 
 bool Block::will_collied_on_move(
     std::vector<std::pair<int, int>> &co_ordinate) {
-  for (auto &value : block_co_ordinates) {
-    // std::cout << value.first << ", " << value.second << " | ";
-  }
-
-  // std::cout << "\n";
-  for (auto &value : co_ordinate) {
-    std::cout << value.first << ", " << value.second << " | ";
-  }
-  // std::cout << ".\n";
   // check if there are charctor at moved location
-  std::cout << "-->";
   bool have_space =
       std::all_of(co_ordinate.begin(), co_ordinate.end(),
                   [](const std::pair<int, int> &value) {
                     const char scan =
                         mvinch(value.second, value.first) & A_CHARTEXT;
-                    // std::cout << "|" << value.first << ", " << value.second
-                    //           << "|" << scan << ".";
                     return scan == EMPTY_PIXEL;
                   });
-  std::cout << "<--\n";
   return !have_space;
 }
