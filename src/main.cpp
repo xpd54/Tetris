@@ -42,7 +42,7 @@ int main() {
   Window win;
   win.draw();
 
-  Block first_block(Shape::Oblock);
+  Block first_block(Shape::Lblock);
   while (1) {
     std::this_thread::sleep_for(
         std::chrono::milliseconds(500)); // Refresh to show changes

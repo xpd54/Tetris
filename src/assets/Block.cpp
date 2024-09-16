@@ -26,10 +26,11 @@ void Block::draw_at_position(int x, int y) const {
 void Block::move(Direction direction, int number_of_time) {
   // before moving check if it's gonna collide with windows or other Tetromino.
   auto move_co_ordinate = get_moved_co_ordinate(direction, number_of_time);
-  if (!will_collied_on_move(move_co_ordinate)) {
-    block_co_ordinates = move_co_ordinate;
-  } else {
-    // std::cout << "collision" << std::endl;
+  // TODO: fix it with correct collied condition
+  if (1 || !will_collied_on_move(move_co_ordinate)) {
+    std::for_each(
+        block_co_ordinates.begin(), block_co_ordinates.end(),
+        [](auto &value) { mvaddch(value.second, value.first, EMPTY_PIXEL); });
     block_co_ordinates = move_co_ordinate;
   }
 }
