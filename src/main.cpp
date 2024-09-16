@@ -33,7 +33,6 @@
   return 0;
 }*/
 
-#include <ncurses.h>
 #include <string.h>
 
 int main() {
@@ -42,23 +41,14 @@ int main() {
   curs_set(0); // Hide the cursor
   Window win;
   win.draw();
-  Block first_block(Shape::Iblock);
-  first_block.move(Direction::RIGHT, 10);
+  Block first_block(Shape::Oblock);
+  // first_block.move(Direction::RIGHT, 82);
   // are you saving from the last move?
-  first_block.move(Direction::DOWN, 14);
+  // first_block.move(Direction::DOWN, 1);
   // first_block.move(Direction::LEFT, 1);
-  // first_block.move(Direction::LEFT, 1);
+  // first_block.move(Direction::LEFT, 4);
   // first_block.move(Direction::LEFT, 1);
   first_block.draw();
-  // Wait for a key press
-  // for (int i = 0; i < 2; i++) {
-  //   for (int j = 0; j < 5; j++) {
-  //     char value = (mvinch(j, i) & A_CHARTEXT);
-  //     if (value == BOUNDARY_PIXEL)
-  //       std::cout << value << "(" << i << ", " << j << ")"
-  //                 << " ";
-  //   }
-  // }
   refresh();
   getch();
 

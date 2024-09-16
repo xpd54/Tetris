@@ -8,13 +8,11 @@
 std::vector<std::pair<int, int>> get_block(int x, int y, Shape shape);
 Block::Block(Shape _shape, Rotation _rotation)
     : Tetromino(), shape(_shape), rotation(_rotation) {
-  block_co_ordinates =
-      get_block(get_co_ordinate().first, get_co_ordinate().second, shape);
+  std::cout << TETROMINO_X_OFFSET << " , " << TETROMINO_Y_OFFSET << "\n";
+  block_co_ordinates = get_block(TETROMINO_X_OFFSET, TETROMINO_Y_OFFSET, shape);
 }
 
-void Block::draw() const {
-  draw_at_position(get_co_ordinate().first, get_co_ordinate().second);
-}
+void Block::draw() const { draw_at_position(0, 0); }
 
 void Block::draw_at_position(int x, int y) const {
   for (auto &value : block_co_ordinates) {
@@ -31,7 +29,6 @@ void Block::move(Direction direction, int number_of_time) {
   auto move_co_ordinate = get_moved_co_ordinate(direction, number_of_time);
   if (!will_collied_on_move(move_co_ordinate)) {
     block_co_ordinates = move_co_ordinate;
-    Tetromino::move(direction, number_of_time);
   } else {
     std::cout << "collision" << std::endl;
   }
@@ -47,7 +44,7 @@ void Block::move(Direction direction, int number_of_time) {
  * 360°/ 0° rotation (x, Y) -> (x, y)
  * */
 void Block::rotate(Rotation r) {
-  std::pair<int, int> co_ordinate = get_co_ordinate();
+  std::pair<int, int> co_ordinate = {0, 0};
   int maxX = co_ordinate.first + 3;
   int maxY = co_ordinate.second + 3;
   switch (r) {

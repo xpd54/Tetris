@@ -16,15 +16,7 @@ enum class Direction {
 };
 
 class Tetromino {
-private:
-  int x;
-  int y;
-
 public:
-  /*Let other members get initialized by default will change to mid location
-   * later*/
-  Tetromino(int _x = 0, int _y = 0) : x(_x), y(_y) {}
-  std::pair<int, int> get_co_ordinate() const;
   /* Pure virtual so we can't have objec tof Tetromino class. but as these
    * methods are in public specifire cause object of derived class will only
    * have access to public member. */
@@ -34,5 +26,5 @@ public:
   virtual void draw() const = 0;
 
   virtual void move(Direction direction = Direction::DOWN,
-                    int number_of_time = 1);
+                    int number_of_time = 1) = 0;
 };
