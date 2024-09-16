@@ -42,12 +42,9 @@ int main() {
   Window win;
   win.draw();
   Block first_block(Shape::Oblock);
-  // first_block.move(Direction::RIGHT, 82);
+  // first_block.move(Direction::RIGHT, 8);
   // are you saving from the last move?
-  // first_block.move(Direction::DOWN, 1);
-  // first_block.move(Direction::LEFT, 1);
-  // first_block.move(Direction::LEFT, 4);
-  // first_block.move(Direction::LEFT, 1);
+  first_block.move();
   first_block.draw();
   refresh();
   getch();

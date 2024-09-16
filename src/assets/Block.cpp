@@ -8,7 +8,6 @@
 std::vector<std::pair<int, int>> get_block(int x, int y, Shape shape);
 Block::Block(Shape _shape, Rotation _rotation)
     : Tetromino(), shape(_shape), rotation(_rotation) {
-  std::cout << TETROMINO_X_OFFSET << " , " << TETROMINO_Y_OFFSET << "\n";
   block_co_ordinates = get_block(TETROMINO_X_OFFSET, TETROMINO_Y_OFFSET, shape);
 }
 
