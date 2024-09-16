@@ -65,6 +65,6 @@ private:
   std::vector<std::pair<int, int>> block_co_ordinates;
   std::vector<std::pair<int, int>>
   get_moved_co_ordinate(Direction direction, int number_of_time = 1);
-  bool will_collied_on_move(Direction direction, int number_of_time = 1);
+  bool will_collied_on_move(std::vector<std::pair<int, int>> &co_ordinamte);
   Rotation rotation;
 };

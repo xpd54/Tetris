@@ -27,14 +27,13 @@ void Block::draw_at_position(int x, int y) const {
 };
 
 void Block::move(Direction direction, int number_of_time) {
-  /* explicitly calling base class move method with namespace or it will end up
-   * calling it self with run time error. sigfault*/
-
   // before moving check if it's gonna collide with windows or other Tetromino.
-  if (!will_collied_on_move(direction, number_of_time))
+  auto move_co_ordinate = get_moved_co_ordinate(direction, number_of_time);
+  if (!will_collied_on_move(move_co_ordinate)) {
+    block_co_ordinates = move_co_ordinate;
     Tetromino::move(direction, number_of_time);
-  else {
-    std::cout << "--------->" << std::endl;
+  } else {
+    std::cout << "collision" << std::endl;
   }
 }
 
@@ -148,13 +147,28 @@ Block::get_moved_co_ordinate(Direction direction, int number_of_time) {
   return moved_location;
 }
 
-bool Block::will_collied_on_move(Direction direction, int number_of_time) {
-  auto co_ordinate = get_moved_co_ordinate(direction, number_of_time);
+bool Block::will_collied_on_move(
+    std::vector<std::pair<int, int>> &co_ordinate) {
+  for (auto &value : block_co_ordinates) {
+    // std::cout << value.first << ", " << value.second << " | ";
+  }
+
+  // std::cout << "\n";
+  for (auto &value : co_ordinate) {
+    std::cout << value.first << ", " << value.second << " | ";
+  }
+  // std::cout << ".\n";
   // check if there are charctor at moved location
+  std::cout << "-->";
   bool have_space =
       std::all_of(co_ordinate.begin(), co_ordinate.end(),
                   [](const std::pair<int, int> &value) {
-                    return mvinch(value.second, value.first) == EMPTY_PIXEL;
+                    const char scan =
+                        mvinch(value.second, value.first) & A_CHARTEXT;
+                    // std::cout << "|" << value.first << ", " << value.second
+                    //           << "|" << scan << ".";
+                    return scan == EMPTY_PIXEL;
                   });
+  std::cout << "<--\n";
   return !have_space;
 }

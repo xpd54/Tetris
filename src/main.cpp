@@ -42,34 +42,24 @@ int main() {
   curs_set(0); // Hide the cursor
   Window win;
   win.draw();
-  Block first_block(Shape::Jblock);
-  // first_block.draw_at_position(20, 30);
-  // first_block.draw_at_position(20, 30);
-  first_block.rotate(Rotation::Ninety);
-  // first_block.move(2, Direction::DOWN);
-  // first_block.move(2, Direction::LEFT);
-  first_block.move(5, Direction::DOWN);
-  first_block.move(5, Direction::RIGHT);
-  // first_block.move(2, Direction::LEFT);
+  Block first_block(Shape::Iblock);
+  first_block.move(Direction::RIGHT, 10);
+  // are you saving from the last move?
+  first_block.move(Direction::DOWN, 14);
+  // first_block.move(Direction::LEFT, 1);
+  // first_block.move(Direction::LEFT, 1);
+  // first_block.move(Direction::LEFT, 1);
   first_block.draw();
-
-  // Print some lines of text
-  // mvprintw(5, 10, "Line 1");
-  // mvprintw(6, 10, "Line 2");
-  // mvprintw(7, 10, "Line 3");
-  // mvprintw(8, 10, "Line 4");
-  // mvprintw(9, 10, "Line 5");
-  refresh();
-
-  // Get the entire line at row 3 (line 4)
-  // char line[80];
-  // mvwinnstr(stdscr, 7, 10, line, sizeof(line) - 1);
-
-  // Print the line
-  // mvprintw(11, 10, "Line 4: %s", line);
-  // refresh();
-
   // Wait for a key press
+  // for (int i = 0; i < 2; i++) {
+  //   for (int j = 0; j < 5; j++) {
+  //     char value = (mvinch(j, i) & A_CHARTEXT);
+  //     if (value == BOUNDARY_PIXEL)
+  //       std::cout << value << "(" << i << ", " << j << ")"
+  //                 << " ";
+  //   }
+  // }
+  refresh();
   getch();
 
   // Terminate the ncurses library
