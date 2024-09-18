@@ -42,12 +42,19 @@ int main() {
   Window win;
   win.draw();
 
-  Block first_block(Shape::Lblock);
+  Block first_block(Shape::Zblock);
+  Block second(Shape::Tblock);
+  int count = 0;
   while (1) {
     std::this_thread::sleep_for(
         std::chrono::milliseconds(500)); // Refresh to show changes
     first_block.move();
     first_block.draw();
+    count++;
+    if (count > 40) {
+      second.move();
+      second.draw();
+    }
     refresh();
   }
   // Terminate the ncurses library
