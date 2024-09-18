@@ -4,36 +4,8 @@
 #include <chrono>
 #include <curses.h>
 #include <iostream>
-#include <thread>
-/*int main() {
-  std::string hello("===>");
-  WINDOW *window = initscr(); // Initialize the ncurses mode
-  for (size_t i = SCREEN_OFFSET; i <= SCREEN_HEIGHT; ++i) {
-    mvaddch(i, SCREEN_OFFSET, BOUNDARY_PIXEL);
-    for (size_t j = SCREEN_OFFSET + 1; j < SCREEN_WIDTH; ++j) {
-      char pixel = i < SCREEN_HEIGHT ? EMPTY_PIXEL : BOUNDARY_PIXEL;
-      mvaddch(i, j, pixel);
-    }
-    addstr("#");
-  }
-  refresh();
-  int j = 0;
-  while (1) {
-    std::this_thread::sleep_for(
-        std::chrono::milliseconds(500)); // Refresh to show changes
-    // hello.insert(0, "=");
-    // addstr(hello.c_str());
-    mvaddstr(0, j, hello.c_str());
-    refresh();
-    clear();
-    j++;
-  }
-  getch();  // Wait for user input
-  endwin(); // End ncurses mode
-  return 0;
-}*/
-
 #include <string.h>
+#include <thread>
 
 int main() {
   // Initialize the ncurses library
@@ -42,19 +14,22 @@ int main() {
   Window win;
   win.draw();
 
-  Block first_block(Shape::Zblock);
-  Block second(Shape::Tblock);
+  Block *first_block;
   int count = 0;
   while (1) {
     std::this_thread::sleep_for(
         std::chrono::milliseconds(500)); // Refresh to show changes
-    first_block.move();
-    first_block.draw();
-    count++;
-    if (count > 40) {
-      second.move();
-      second.draw();
+    if (count == 0 || (count % 30) == 0) {
+      first_block = new Block(Shape::Lblock);
     }
+    (*first_block).move();
+    (*first_block).draw();
+    count++;
+    // if (count % 10) {
+    //   Block second(Shape::Tblock);
+    //   second.move();
+    //   second.draw();
+    // }
     refresh();
   }
   // Terminate the ncurses library
