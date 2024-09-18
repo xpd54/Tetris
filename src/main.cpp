@@ -23,6 +23,8 @@ int main() {
       first_block = new Block(Shape::Lblock);
     }
     (*first_block).move();
+    if (count % 2)
+      (*first_block).move(Direction::RIGHT, 1);
     (*first_block).draw();
     count++;
     // if (count % 10) {
