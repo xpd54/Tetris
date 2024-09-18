@@ -25,13 +25,12 @@ void Block::draw_at_position(int x, int y) const {
 
 void Block::move(Direction direction, int number_of_time) {
   // before moving check if it's gonna collide with windows or other Tetromino.
-  auto move_co_ordinate = get_moved_co_ordinate(direction, number_of_time);
-  // TODO: fix it with correct collied condition
-  if (1 || !will_collied_on_move(move_co_ordinate)) {
+  auto moved_co_ordinate = get_moved_co_ordinate(direction, number_of_time);
+  if (!will_collied_on_move(moved_co_ordinate)) {
     std::for_each(
         block_co_ordinates.begin(), block_co_ordinates.end(),
         [](auto &value) { mvaddch(value.second, value.first, EMPTY_PIXEL); });
-    block_co_ordinates = move_co_ordinate;
+    block_co_ordinates = moved_co_ordinate;
   }
 }
 
@@ -146,10 +145,19 @@ Block::get_moved_co_ordinate(Direction direction, int number_of_time) {
 }
 
 bool Block::will_collied_on_move(
-    std::vector<std::pair<int, int>> &co_ordinate) {
-  // check if there are charctor at moved location
+    std::vector<std::pair<int, int>> &moved_co_ordinate) {
+  /*find which co-ordinates are not common between moved and
+   * block_co_ordinates*/
+  std::vector<std::pair<int, int>> uncommon_co_ordinates;
+  std::sort(moved_co_ordinate.begin(), moved_co_ordinate.end());
+  std::sort(block_co_ordinates.begin(), block_co_ordinates.end());
+
+  std::vector<std::pair<int, int>> diff_vector;
+  std::set_difference(moved_co_ordinate.begin(), moved_co_ordinate.end(),
+                      block_co_ordinates.begin(), block_co_ordinates.end(),
+                      std::back_inserter(diff_vector));
   bool have_space =
-      std::all_of(co_ordinate.begin(), co_ordinate.end(),
+      std::all_of(diff_vector.begin(), diff_vector.end(),
                   [](const std::pair<int, int> &value) {
                     const char scan =
                         mvinch(value.second, value.first) & A_CHARTEXT;
