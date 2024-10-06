@@ -44,29 +44,37 @@ void Block::move(Direction direction, int number_of_time) {
  * 360°/ 0° rotation (x, Y) -> (x, y)
  * */
 void Block::rotate(Rotation r) {
-  std::pair<int, int> co_ordinate = {0, 0};
-  int maxX = co_ordinate.first + 3;
-  int maxY = co_ordinate.second + 3;
+  std::pair<int, int> co_ordinate = {TETROMINO_X_OFFSET, TETROMINO_Y_OFFSET};
+  int sumOfX = 0;
+  int sumOfY = 0;
+  for (auto &value : block_co_ordinates) {
+    sumOfX += value.first;
+    sumOfY += value.second;
+  }
+
+  int centroidX = sumOfX / block_co_ordinates.size();
+  int centroidY = sumOfY / block_co_ordinates.size();
+
   switch (r) {
   case Rotation::Ninety:
     for (auto &value : block_co_ordinates) {
-      int x = value.first;
-      int y = value.second;
-      value = {(maxY - y), x};
+      int newX = value.second - centroidY + centroidX;
+      int newY = -(value.first - centroidX) + centroidY;
+      value = {newX, newY};
     }
     break;
   case Rotation::OneEighty:
     for (auto &value : block_co_ordinates) {
-      int x = value.first;
-      int y = value.second;
-      value = {(maxY - x), (maxX - y)};
+      int newX = (2 * centroidX) - value.first;
+      int newY = (2 * centroidY) - value.second;
+      value = {newX, newY};
     }
     break;
   case Rotation::TwoSeventy:
     for (auto &value : block_co_ordinates) {
       int x = value.first;
       int y = value.second;
-      value = {y, (maxX - x)};
+      value = {y, (-x)};
     }
     break;
   default:

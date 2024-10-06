@@ -13,28 +13,41 @@ int main() {
   curs_set(0); // Hide the cursor
   Window win;
   win.draw();
-
-  Block *first_block;
+  Block *current_block;
+  std::vector<Block> blocks;
   int count = 0;
   while (1) {
     std::this_thread::sleep_for(
         std::chrono::milliseconds(500)); // Refresh to show changes
     if (count == 0 || (count % 30) == 0) {
-      first_block = new Block(Shape::Lblock);
+      Block block(Shape::Lblock);
+      block.rotate(Rotation::Ninety);
+      blocks.push_back(block);
     }
-    (*first_block).move();
-    if (count % 2)
-      (*first_block).move(Direction::RIGHT, 1);
-    (*first_block).draw();
+    current_block = &(*blocks.rbegin());
+    (*current_block).move();
+    if (count % 2) {
+      (*current_block).move(Direction::RIGHT, 1);
+      (*current_block).rotate(Rotation::Ninety);
+    }
+    (*current_block).draw();
     count++;
-    // if (count % 10) {
-    //   Block second(Shape::Tblock);
-    //   second.move();
-    //   second.draw();
-    // }
     refresh();
   }
   // Terminate the ncurses library
   endwin();
   return 0;
 }
+
+// int main() {
+//   initscr();
+//   // curs_set(0);
+//   Block block(Shape::Lblock);
+//   block.rotate(Rotation::Ninety);
+//   // block.move(Direction::RIGHT, 10);
+//   block.draw();
+//   refresh();
+//   getch();
+//   endwin();
+//   return 0;
+// }
