@@ -23,7 +23,7 @@ void Block::draw_at_position(int x, int y) const {
   }
 };
 
-void Block::move(Direction direction, int number_of_time) {
+bool Block::move(Direction direction, int number_of_time) {
   // before moving check if it's gonna collide with windows or other Tetromino.
   auto moved_co_ordinate = get_moved_co_ordinate(direction, number_of_time);
   if (!will_collied_on_move(moved_co_ordinate)) {
@@ -31,7 +31,9 @@ void Block::move(Direction direction, int number_of_time) {
         block_co_ordinates.begin(), block_co_ordinates.end(),
         [](auto &value) { mvaddch(value.second, value.first, EMPTY_PIXEL); });
     block_co_ordinates = moved_co_ordinate;
+    return true;
   }
+  return false;
 }
 
 /* We can consider all shape as 4X4 metrix where co-ordinate (0,0) is at upper
@@ -61,6 +63,7 @@ void Block::rotate(Rotation r) {
       int newX = value.second - centroidY + centroidX;
       int newY = -(value.first - centroidX) + centroidY;
       value = {newX, newY};
+      rotation = Rotation::Ninety;
     }
     break;
   case Rotation::OneEighty:
@@ -68,13 +71,15 @@ void Block::rotate(Rotation r) {
       int newX = (2 * centroidX) - value.first;
       int newY = (2 * centroidY) - value.second;
       value = {newX, newY};
+      rotation = Rotation::OneEighty;
     }
     break;
   case Rotation::TwoSeventy:
     for (auto &value : block_co_ordinates) {
-      int x = value.first;
-      int y = value.second;
-      value = {y, (-x)};
+      int newX = value.second - centroidY + centroidX;
+      int newY = (value.first - centroidX) + centroidY;
+      value = {newX, newY};
+      rotation = Rotation::TwoSeventy;
     }
     break;
   default:

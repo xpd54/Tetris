@@ -25,6 +25,6 @@ public:
    * location.*/
   virtual void draw() const = 0;
 
-  virtual void move(Direction direction = Direction::DOWN,
+  virtual bool move(Direction direction = Direction::DOWN,
                     int number_of_time = 1) = 0;
 };
