@@ -11,7 +11,19 @@ add_executable(
   ${PROJECT_NAME}
   ${tetris_src}
 )
+
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+    /usr/local/include/
+)
+
+target_link_directories(${PROJECT_NAME} 
+  PUBLIC
+  /usr/local/lib
+)
+
 target_link_libraries(${PROJECT_NAME} 
   PRIVATE
   curses
+  raylib
 )
