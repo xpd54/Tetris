@@ -2,7 +2,7 @@
 
 Simple Tetris game in c++
 
-1. `brew install ncurses` Install ncurses in Mac first.
+1. `brew install raylib` Install raylib in Mac first.
 2. Create a folder in root folder name `build`
 3. `cd build`
 4. `cmake .. && make`
