@@ -1,5 +1,6 @@
 #pragma once
 #include "../../env/constant.h"
+#include "../Attribute/CellPosition.h"
 #include "../Attribute/Color.h"
 #include <map>
 #include <raylib.h>
@@ -71,18 +72,12 @@ class Tetromino {
 public:
   Tetromino(uint32_t _cell_size = TETROMINO_CELL_SIZE,
             Rotation _rotation = Rotation::Zero);
-  Shape tetromino_shape;
-  std::map<int, std::vector<std::pair<uint32_t, uint32_t>>> cells;
-  /* Pure virtual so we can't have objec tof Tetromino class. but as these
-   * methods are in public specifire cause object of derived class will only
-   * have access to public member. */
-  virtual void draw_at_position(int, int) const = 0;
-  /*As Tetromino do have it's co_ordinate by default we can draw it at default
-   * location.*/
   virtual void draw() const;
-
   virtual bool move(Direction direction = Direction::DOWN,
                     int number_of_time = 1) = 0;
+
+  Shape tetromino_shape;
+  std::map<Rotation, std::vector<CellPostion>> cells;
 
 private:
   uint32_t cell_size;
