@@ -13,6 +13,54 @@ enum class Rotation {
   TwoSeventy,
 };
 
+enum class Shape {
+  /*
+      x
+      x
+      x
+      x
+  */
+  Iblock,
+
+  /*
+       x
+       x
+      xx
+  */
+  Jblock,
+
+  /*
+    x
+    x
+    xx
+  */
+  Lblock,
+
+  /*
+    xx
+    xx
+  */
+  Oblock,
+
+  /*
+    xx
+   xx
+  */
+  Sblock,
+
+  /*
+   xxx
+    x
+  */
+  Tblock,
+
+  /*
+    xx
+     xx
+  */
+  Zblock,
+};
+
 enum class Direction {
   DOWN,
   LEFT,
@@ -23,7 +71,7 @@ class Tetromino {
 public:
   Tetromino(uint32_t _cell_size = TETROMINO_CELL_SIZE,
             Rotation _rotation = Rotation::Zero);
-  uint32_t tetro_id;
+  Shape tetromino_shape;
   std::map<int, std::vector<std::pair<uint32_t, uint32_t>>> cells;
   /* Pure virtual so we can't have objec tof Tetromino class. but as these
    * methods are in public specifire cause object of derived class will only
