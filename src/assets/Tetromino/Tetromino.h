@@ -73,10 +73,8 @@ public:
   Tetromino(uint32_t _cell_size = TETROMINO_CELL_SIZE,
             Rotation _rotation = Rotation::Zero);
   virtual void draw() const;
-  virtual bool move(Direction direction = Direction::DOWN,
-                    int number_of_time = 1) = 0;
 
-  Shape tetromino_shape;
+  uint32_t tetromino_shape;
   std::map<Rotation, std::vector<CellPostion>> cells;
 
 private:

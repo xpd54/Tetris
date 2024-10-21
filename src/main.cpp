@@ -7,7 +7,7 @@ int main() {
   Color darkBlue = {44, 44, 127, 255};
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE);
   Window window = Window();
-  LBlock block();
+  LBlock block = LBlock();
   /* Defination of game loop
   1. Event Hnadling
   2. Updating Postions
