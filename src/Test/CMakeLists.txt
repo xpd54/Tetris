@@ -1,16 +1,14 @@
 cmake_minimum_required(VERSION 3.26)
-project(Tetris)
+project(TestRayLib)
 set(CMAKE_CXX_STANDARD 17)
-file(GLOB tetris_src
-  "src/main.cpp"
-  "src/assets/*.cpp"
-  "src/assets/ball/*.cpp"
-  "src/env/*.cpp"
+file(GLOB raylib_setup_src
+  "ball/*.cpp"
+  "*.cpp"
 )
 
 add_executable(
   ${PROJECT_NAME}
-  ${tetris_src}
+  ${raylib_setup_src}
 )
 
 target_include_directories(${PROJECT_NAME}
@@ -25,6 +23,5 @@ target_link_directories(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} 
   PRIVATE
-  curses
   raylib
 )
