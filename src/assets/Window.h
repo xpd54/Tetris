@@ -1,8 +1,24 @@
+#pragma once
 #include "../env/constant.h"
-#include "Tetromino.h"
+#include <array>
+#include <raylib.h>
+#include <vector>
 class Window {
 public:
-  // this should be static method which can be called only once.
+  Window(uint32_t row = NUMBER_OF_ROW_IN_WINDOW,
+         uint32_t col = NUMBER_OF_CELL_IN_A_ROW,
+         uint32_t cell_size = TETROMINO_CELL_SIZE);
+  void print();
+  std::array<std::array<uint32_t, NUMBER_OF_CELL_IN_A_ROW>,
+             NUMBER_OF_ROW_IN_WINDOW>
+      surface;
   void draw();
-  bool draw_a_tetro(Tetromino &);
+
+private:
+  std::vector<Color> getCellColors();
+  uint32_t window_row;
+  uint32_t window_column;
+  uint32_t window_cell_size;
+  void initialize_window();
+  std::vector<Color> colors;
 };

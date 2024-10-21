@@ -3,6 +3,7 @@ project(Tetris)
 set(CMAKE_CXX_STANDARD 17)
 file(GLOB tetris_src
   "src/main.cpp"
+  "src/assets/Window.cpp"
   "src/env/*.cpp"
 )
 
