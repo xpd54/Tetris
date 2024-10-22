@@ -1,5 +1,5 @@
 #include <stdint.h>
-struct CellPostion {
+struct CellPosition {
   uint32_t row;
   uint32_t column;
 };
