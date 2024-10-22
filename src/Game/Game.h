@@ -15,8 +15,9 @@ public:
 
 private:
   std::vector<Tetromino> blocks;
-  Tetromino currentTetromino;
-  Tetromino nextTetromino;
+  Tetromino current_block;
+  Tetromino next_block;
   std::vector<Tetromino> get_all_blocks();
   bool is_current_block_outside();
+  void rotate_current_block();
 };

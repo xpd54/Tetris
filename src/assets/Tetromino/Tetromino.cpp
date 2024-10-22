@@ -3,6 +3,13 @@
 Tetromino::Tetromino(uint32_t _cell_size, Rotation _rotation)
     : cell_size(_cell_size), rotation(_rotation) {
   colors = getCellColors();
+  allRotation = {
+      Rotation::Zero,
+      Rotation::Ninety,
+      Rotation::OneEighty,
+      Rotation::TwoSeventy,
+  };
+
   rowPosition = 0;
   columnPosition = 0;
 }
@@ -31,3 +38,22 @@ std::vector<CellPosition> Tetromino::get_moved_position() const {
   }
   return moved_position;
 }
+
+Rotation Tetromino::get_next_rotation() {
+  auto it = std::find(allRotation.begin(), allRotation.end(), rotation);
+  if (*it == *allRotation.rbegin()) {
+    return *allRotation.begin();
+  }
+  return *(++it);
+}
+
+Rotation Tetromino::get_previous_rotation() {
+  auto it = std::find(allRotation.begin(), allRotation.end(), rotation);
+  if (*it == *allRotation.begin()) {
+    return *allRotation.rbegin();
+  }
+  return *(--it);
+}
+
+void Tetromino::rotate() { rotation = get_next_rotation(); }
+void Tetromino::undo_rotation() { rotation = get_previous_rotation(); }

@@ -6,8 +6,8 @@
 Game::Game() {
   // Set Srand one time
   srand(time(NULL));
-  currentTetromino = get_random_tetromino();
-  nextTetromino = get_random_tetromino();
+  current_block = get_random_tetromino();
+  next_block = get_random_tetromino();
   blocks = get_all_blocks();
 }
 
@@ -29,7 +29,7 @@ std::vector<Tetromino> Game::get_all_blocks() {
 
 void Game::draw() {
   window.draw();
-  currentTetromino.draw();
+  current_block.draw();
 }
 
 void Game::handle_input() {
@@ -44,37 +44,47 @@ void Game::handle_input() {
   case KEY_DOWN:
     move_current_block_down();
     break;
+  case KEY_UP:
+    rotate_current_block();
+    break;
   default:
     break;
   }
 }
 
 void Game::move_current_block_left() {
-  currentTetromino.move(0, -1);
+  current_block.move(0, -1);
   if (is_current_block_outside()) {
-    currentTetromino.move(0, 1);
+    current_block.move(0, 1);
   }
 }
 
 void Game::move_current_block_right() {
-  currentTetromino.move(0, 1);
+  current_block.move(0, 1);
   if (is_current_block_outside()) {
-    currentTetromino.move(0, -1);
+    current_block.move(0, -1);
   }
 }
 
 void Game::move_current_block_down() {
-  currentTetromino.move(1, 0);
+  current_block.move(1, 0);
 
   if (is_current_block_outside()) {
-    currentTetromino.move(-1, 0);
+    current_block.move(-1, 0);
   }
 }
 
 bool Game::is_current_block_outside() {
-  std::vector<CellPosition> tiles = currentTetromino.get_moved_position();
+  std::vector<CellPosition> tiles = current_block.get_moved_position();
   return std::any_of(
       tiles.begin(), tiles.end(), [&](const CellPosition &position) {
         return window.is_cell_outside(position.row, position.column);
       });
+}
+
+void Game::rotate_current_block() {
+  current_block.rotate();
+  if (is_current_block_outside()) {
+    current_block.undo_rotation();
+  }
 }

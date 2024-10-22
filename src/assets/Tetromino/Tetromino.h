@@ -62,19 +62,16 @@ enum class Shape {
   Zblock,
 };
 
-enum class Direction {
-  DOWN,
-  LEFT,
-  RIGHT,
-};
-
 class Tetromino {
 public:
   Tetromino(uint32_t _cell_size = TETROMINO_CELL_SIZE,
             Rotation _rotation = Rotation::Zero);
   virtual void draw() const;
   void move(int row, int column);
+  void rotate();
+  void undo_rotation();
   std::vector<CellPosition> get_moved_position() const;
+
   uint32_t tetromino_shape;
   std::map<Rotation, std::vector<CellPosition>> cells;
 
@@ -82,6 +79,9 @@ private:
   uint32_t cell_size;
   Rotation rotation;
   std::vector<Color> colors;
+  std::vector<Rotation> allRotation;
+  Rotation get_next_rotation();
+  Rotation get_previous_rotation();
   uint32_t rowPosition;
   uint32_t columnPosition;
 };
