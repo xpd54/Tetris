@@ -71,6 +71,7 @@ void Game::move_current_block_down() {
 
   if (is_current_block_outside()) {
     current_block.move(-1, 0);
+    lock_current_block();
   }
 }
 
@@ -87,4 +88,14 @@ void Game::rotate_current_block() {
   if (is_current_block_outside()) {
     current_block.undo_rotation();
   }
+}
+
+void Game::lock_current_block() {
+  std::vector<CellPosition> tiles = current_block.get_moved_position();
+  std::for_each(tiles.begin(), tiles.end(), [&](CellPosition &position) {
+    auto &row = window.surface.at(position.row);
+    row.at(position.column) = current_block.tetromino_shape;
+  });
+  current_block = next_block;
+  next_block = get_random_tetromino();
 }

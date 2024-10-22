@@ -20,4 +20,5 @@ private:
   std::vector<Tetromino> get_all_blocks();
   bool is_current_block_outside();
   void rotate_current_block();
+  void lock_current_block();
 };
