@@ -6,6 +6,7 @@ file(GLOB tetris_src
   "src/assets/Window/*.cpp"
   "src/assets/Tetromino/*.cpp"
   "src/assets/Attribute/*.cpp"
+  "src/Game/*.cpp"
   "src/env/*.cpp"
 )
 
