@@ -73,7 +73,8 @@ public:
   Tetromino(uint32_t _cell_size = TETROMINO_CELL_SIZE,
             Rotation _rotation = Rotation::Zero);
   virtual void draw() const;
-  void move(uint32_t row, uint32_t column);
+  void move(int row, int column);
+  std::vector<CellPosition> get_moved_position() const;
   uint32_t tetromino_shape;
   std::map<Rotation, std::vector<CellPosition>> cells;
 
@@ -83,5 +84,4 @@ private:
   std::vector<Color> colors;
   uint32_t rowPosition;
   uint32_t columnPosition;
-  std::vector<CellPosition> get_moved_position() const;
 };

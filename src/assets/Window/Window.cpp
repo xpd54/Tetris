@@ -33,3 +33,9 @@ void Window::draw() const {
     }
   }
 }
+
+bool Window::is_cell_outside(int row, int column) {
+  if (row >= 0 && row < window_row && column >= 0 && column < window_column)
+    return false;
+  return true;
+}

@@ -17,7 +17,7 @@ void Tetromino::draw() const {
   }
 }
 
-void Tetromino::move(uint32_t row, uint32_t column) {
+void Tetromino::move(int row, int column) {
   rowPosition += row;
   columnPosition += column;
 }

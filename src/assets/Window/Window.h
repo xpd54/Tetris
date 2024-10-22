@@ -13,6 +13,7 @@ public:
              NUMBER_OF_ROW_IN_WINDOW>
       surface;
   void draw() const;
+  bool is_cell_outside(int row, int column);
 
 private:
   uint32_t window_row;

@@ -7,6 +7,7 @@ int main() {
   Game game;
   SetTargetFPS(GAME_SPEED);
   while (WindowShouldClose() == false) {
+    game.handle_input();
     BeginDrawing();
     ClearBackground(darkBlue);
     game.draw();
