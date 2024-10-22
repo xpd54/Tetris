@@ -1,5 +1,6 @@
 #include "Game/Game.h"
 #include "env/constant.h"
+#include "util/EventTrigger.h"
 #include <raylib.h>
 int main() {
   Color darkBlue = {44, 44, 127, 255};
@@ -8,6 +9,9 @@ int main() {
   SetTargetFPS(GAME_SPEED);
   while (WindowShouldClose() == false) {
     game.handle_input();
+    if (eventTriggered(0.2)) {
+      game.move_current_block_down();
+    }
     BeginDrawing();
     ClearBackground(darkBlue);
     game.draw();

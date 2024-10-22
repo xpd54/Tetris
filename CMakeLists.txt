@@ -8,6 +8,7 @@ file(GLOB tetris_src
   "src/assets/Attribute/*.cpp"
   "src/Game/*.cpp"
   "src/env/*.cpp"
+  "src/util/*.cpp"
 )
 
 add_executable(
