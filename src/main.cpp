@@ -1,25 +1,15 @@
-#include "assets/Tetromino/Blocks.cpp"
-#include "assets/Tetromino/Tetromino.h"
-#include "assets/Window/Window.h"
+#include "Game/Game.h"
 #include "env/constant.h"
 #include <raylib.h>
 int main() {
   Color darkBlue = {44, 44, 127, 255};
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE);
-  Window window;
-  OBlock block;
-  /* Defination of game loop
-  1. Event Hnadling
-  2. Updating Positions
-  3. Drawing Objects
-  */
-  // Set speed of game loop, if not set it will run on computer clock cycle
+  Game game;
   SetTargetFPS(GAME_SPEED);
   while (WindowShouldClose() == false) {
     BeginDrawing();
     ClearBackground(darkBlue);
-    window.draw();
-    block.draw();
+    game.draw();
     EndDrawing();
   }
   CloseWindow();
