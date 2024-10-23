@@ -20,14 +20,13 @@ Tetromino::Tetromino(uint32_t _cell_size, Rotation _rotation)
  * CELL_SEPERATOR_SIZE :- is off set for one pixel which we see between the cell
  * of game window.
  */
-void Tetromino::draw() const {
+void Tetromino::draw(uint32_t off_set_x, uint32_t off_set_y) const {
   std::vector<CellPosition> tiles = get_moved_position();
   for (auto cell : tiles) {
-    DrawRectangle(
-        cell.column * cell_size + CELL_SEPERATOR_SIZE + GAME_WINDOW_OFF_SET,
-        cell.row * cell_size + CELL_SEPERATOR_SIZE + GAME_WINDOW_OFF_SET,
-        cell_size - CELL_SEPERATOR_SIZE, cell_size - CELL_SEPERATOR_SIZE,
-        colors[tetromino_shape]);
+    DrawRectangle(cell.column * cell_size + off_set_x,
+                  cell.row * cell_size + off_set_y,
+                  cell_size - CELL_SEPERATOR_SIZE,
+                  cell_size - CELL_SEPERATOR_SIZE, colors[tetromino_shape]);
   }
 }
 

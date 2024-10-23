@@ -66,7 +66,7 @@ class Tetromino {
 public:
   Tetromino(uint32_t _cell_size = TETROMINO_CELL_SIZE,
             Rotation _rotation = Rotation::Zero);
-  virtual void draw() const;
+  virtual void draw(uint32_t off_set_x, uint32_t off_set_y) const;
   void move(int row, int column);
   void rotate();
   void undo_rotation();

@@ -10,7 +10,7 @@ int main() {
   Game game;
   SetTargetFPS(GAME_SPEED);
 
-  Font font = LoadFontEx("assets/Font/Menlo-Regular.ttf", 64, 0, 0);
+  Font font = LoadFontEx("./assets/Font/Menlo-Regular.ttf", 64, 0, 0);
   while (WindowShouldClose() == false) {
     game.handle_input();
     if (eventTriggered(TETROMINO_MOVING_DELAY)) {

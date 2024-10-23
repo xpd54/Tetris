@@ -30,7 +30,21 @@ std::vector<Tetromino> Game::get_all_blocks() {
 
 void Game::draw() {
   window.draw();
-  current_block.draw();
+  current_block.draw((CELL_SEPERATOR_SIZE + GAME_WINDOW_OFF_SET),
+                     (CELL_SEPERATOR_SIZE + GAME_WINDOW_OFF_SET));
+  // draw next block to right side of user section. Some hard coded offSet which
+  // makes it look fine and centered for all the next blocks
+  switch (next_block.tetromino_shape) {
+  case 3:
+    next_block.draw(255, 255);
+    break;
+  case 4:
+    next_block.draw(255, 280);
+    break;
+  default:
+    next_block.draw(270, 270);
+    break;
+  }
 }
 
 void Game::handle_input() {
