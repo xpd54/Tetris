@@ -10,6 +10,8 @@ public:
   void move_current_block_down();
   bool game_over;
   uint32_t game_score;
+  Music game_music;
+  ~Game();
 
 private:
   Window window;
@@ -26,4 +28,9 @@ private:
   bool does_current_block_fits();
   void update_score(uint32_t row_cleared, uint32_t moved_down_points);
   void reset_game();
+  Sound sound_move_reverted;
+  Sound sound_move_success;
+  Sound sound_game_over;
+  Sound sound_tetris_clear;
+  Sound sound_game_background;
 };

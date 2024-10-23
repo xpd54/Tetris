@@ -9,8 +9,9 @@ int main() {
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE);
   Game game;
   SetTargetFPS(GAME_SPEED);
-  Font font = LoadFontEx("./assets/Font/Menlo-Regular.ttf", 64, 0, 0);
+  Font font = LoadFontEx("Font/Menlo-Regular.ttf", 64, 0, 0);
   while (WindowShouldClose() == false) {
+    UpdateMusicStream(game.game_music);
     game.handle_input();
     if (eventTriggered(TETROMINO_MOVING_DELAY)) {
       game.move_current_block_down();
