@@ -67,7 +67,7 @@ void Game::draw() {
 
 void Game::handle_input() {
   int key = GetKeyPressed();
-  if (game_over && key != 0) {
+  if (game_over && key == KEY_SPACE) {
     game_over = false;
     reset_game();
   }
