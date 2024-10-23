@@ -14,6 +14,12 @@ Tetromino::Tetromino(uint32_t _cell_size, Rotation _rotation)
   columnPosition = 0;
 }
 
+/*
+ * GAME_WINDOW_OFF_SET :- add off set for adding empty space in right side of
+ * game window to show score for user.
+ * CELL_SEPERATOR_SIZE :- is off set for one pixel which we see between the cell
+ * of game window.
+ */
 void Tetromino::draw() const {
   std::vector<CellPosition> tiles = get_moved_position();
   for (auto cell : tiles) {
