@@ -26,10 +26,11 @@ void Window::draw() const {
       Draw each cell as rectangle and set x, y with cell seperator as we set x,
       y with +1 we reduce width and height with -1
       */
-      DrawRectangle(column * window_cell_size + CELL_SEPERATOR_SIZE,
-                    row * window_cell_size + CELL_SEPERATOR_SIZE,
-                    window_cell_size - CELL_SEPERATOR_SIZE,
-                    window_cell_size - CELL_SEPERATOR_SIZE, colors[cell_value]);
+      DrawRectangle(
+          column * window_cell_size + CELL_SEPERATOR_SIZE + GAME_WINDOW_OFF_SET,
+          row * window_cell_size + CELL_SEPERATOR_SIZE + GAME_WINDOW_OFF_SET,
+          window_cell_size - CELL_SEPERATOR_SIZE,
+          window_cell_size - CELL_SEPERATOR_SIZE, colors[cell_value]);
     }
   }
 }

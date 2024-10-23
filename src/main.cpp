@@ -9,7 +9,7 @@ int main() {
   SetTargetFPS(GAME_SPEED);
   while (WindowShouldClose() == false) {
     game.handle_input();
-    if (eventTriggered(0.2)) {
+    if (eventTriggered(TETROMINO_MOVING_DELAY)) {
       game.move_current_block_down();
     }
     BeginDrawing();
