@@ -5,13 +5,14 @@
 class Game {
 public:
   Game();
-  Tetromino get_random_tetromino();
+  Tetromino get_random_block();
   void draw();
   void handle_input();
   void move_current_block_left();
   void move_current_block_right();
   void move_current_block_down();
   Window window;
+  bool game_over;
 
 private:
   std::vector<Tetromino> blocks;
@@ -22,4 +23,5 @@ private:
   void rotate_current_block();
   void lock_current_block();
   bool does_current_block_fits();
+  void reset_game();
 };
