@@ -19,9 +19,9 @@ Tetromino Game::get_random_block() {
   }
   auto randomValue = rand();
   uint32_t randomIndex = randomValue % blocks.size();
-  Tetromino currentBlock = blocks[randomIndex];
+  Tetromino random_block = blocks[randomIndex];
   blocks.erase(blocks.begin() + randomIndex);
-  return currentBlock;
+  return random_block;
 }
 
 std::vector<Tetromino> Game::get_all_blocks() {

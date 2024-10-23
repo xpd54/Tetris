@@ -9,7 +9,6 @@ int main() {
   InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE);
   Game game;
   SetTargetFPS(GAME_SPEED);
-
   Font font = LoadFontEx("./assets/Font/Menlo-Regular.ttf", 64, 0, 0);
   while (WindowShouldClose() == false) {
     game.handle_input();
