@@ -15,6 +15,7 @@ public:
   void draw() const;
   bool is_cell_outside(int row, int column);
   bool is_cell_empty(int row, int column);
+  uint32_t clear_full_row();
 
 private:
   uint32_t window_row;
@@ -22,4 +23,7 @@ private:
   uint32_t window_cell_size;
   void initialize_window();
   std::vector<Color> colors;
+  bool is_a_row_full(uint32_t row) const;
+  void clear_row(uint32_t row);
+  void moved_all_row_down(uint32_t row, uint32_t number_of_time);
 };

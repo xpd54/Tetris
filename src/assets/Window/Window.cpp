@@ -43,3 +43,37 @@ bool Window::is_cell_outside(int row, int column) {
 bool Window::is_cell_empty(int row, int column) {
   return !surface.at(row).at(column);
 }
+
+bool Window::is_a_row_full(uint32_t row) const {
+  auto &current_row = surface.at(row);
+  return std::all_of(current_row.begin(), current_row.end(),
+                     [](const uint32_t &value) { return value > 0; });
+}
+
+void Window::clear_row(uint32_t row) {
+  auto &current_row = surface.at(row);
+  current_row.fill(0);
+}
+
+void Window::moved_all_row_down(uint32_t row, uint32_t number_of_time) {
+  auto &start_row = surface.at(row);
+  auto &end_row = surface.at(row + number_of_time);
+  end_row = start_row;
+  start_row.fill(0);
+}
+
+uint32_t Window::clear_full_row() {
+  uint32_t completed = 0;
+  /*It's a way to reverse iterate through array with size_t here when size_t
+   * which is u long get to zero and still goes 1 down it will jump to largest
+   * value for unsigned long*/
+  for (size_t row = surface.size() - 1; row < surface.size(); --row) {
+    if (is_a_row_full(row)) {
+      clear_row(row);
+      ++completed;
+    } else if (completed > 0) {
+      moved_all_row_down(row, completed);
+    }
+  }
+  return completed;
+}

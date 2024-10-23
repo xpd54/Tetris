@@ -17,7 +17,6 @@ Tetromino Game::get_random_tetromino() {
   }
   auto randomValue = rand();
   uint32_t randomIndex = randomValue % blocks.size();
-  std::cout << randomIndex << " " << blocks.size() << std::endl;
   Tetromino currentBlock = blocks[randomIndex];
   blocks.erase(blocks.begin() + randomIndex);
   return currentBlock;
@@ -98,6 +97,7 @@ void Game::lock_current_block() {
   });
   current_block = next_block;
   next_block = get_random_tetromino();
+  window.clear_full_row();
 }
 
 bool Game::does_current_block_fits() {
