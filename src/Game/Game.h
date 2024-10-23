@@ -13,6 +13,7 @@ public:
   void move_current_block_down();
   Window window;
   bool game_over;
+  uint32_t game_score;
 
 private:
   std::vector<Tetromino> blocks;
@@ -24,4 +25,5 @@ private:
   void lock_current_block();
   bool does_current_block_fits();
   void reset_game();
+  void update_score(uint32_t row_cleared, uint32_t moved_down_points);
 };

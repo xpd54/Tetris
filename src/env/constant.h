@@ -14,15 +14,21 @@
 #define BOUNDARY_PIXEL '#'
 #define EMPTY_PIXEL ' '
 #define BLOCK_PIXEX 'o'
+
 #define SCORE "Score"
 #define SCORE_POSITION                                                         \
   { 365, 15 }
 #define SCORE_FONT_SIZE 30
 #define SCORE_NUMBER_SPACING 2
+#define SCORE_NUMBER_X 320
+#define SCORE_NUMBER_Y 55
+#define SCORE_NUMBER_LENGTH 170
+#define SCORE_NUMBER_HEIGHT 55
 #define SCORE_NUMBER_RECTANGLE                                                 \
-  { 320, 55, 170, 60 }
+  { SCORE_NUMBER_X, SCORE_NUMBER_Y, SCORE_NUMBER_LENGTH, SCORE_NUMBER_HEIGHT }
 #define SCORE_NUMBER_RECTANGLE_ROUNDNESS 0.3
 #define SCORE_NUMBER_RECTANGLE_SEGMENT 6
+#define SCORE_NUMBER_TOP_OFFSET 15
 
 #define NEXT_BLOCK "Next"
 #define NEXT_POSITION                                                          \

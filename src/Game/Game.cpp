@@ -10,6 +10,7 @@ Game::Game() {
   next_block = get_random_block();
   blocks = get_all_blocks();
   game_over = false;
+  game_score = 0;
 }
 
 Tetromino Game::get_random_block() {
@@ -47,6 +48,7 @@ void Game::handle_input() {
     break;
   case KEY_DOWN:
     move_current_block_down();
+    update_score(0, 1);
     break;
   case KEY_UP:
     rotate_current_block();
@@ -112,7 +114,8 @@ void Game::lock_current_block() {
     game_over = true;
   }
   next_block = get_random_block();
-  window.clear_full_row();
+  uint32_t row_cleared = window.clear_full_row();
+  update_score(row_cleared, 0);
 }
 
 bool Game::does_current_block_fits() {
@@ -127,4 +130,23 @@ void Game::reset_game() {
   blocks = get_all_blocks();
   current_block = get_random_block();
   next_block = get_random_block();
+  // when game get reset after game over we set score to zero
+  game_score = 0;
+}
+
+void Game::update_score(uint32_t row_cleared, uint32_t moved_down_points) {
+  switch (row_cleared) {
+  case 1:
+    game_score += 100;
+    break;
+  case 2:
+    game_score += 300;
+    break;
+  case 3:
+    game_score += 500;
+    break;
+  default:
+    break;
+  }
+  game_score += moved_down_points;
 }
