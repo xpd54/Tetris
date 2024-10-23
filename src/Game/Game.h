@@ -21,4 +21,5 @@ private:
   bool is_current_block_outside();
   void rotate_current_block();
   void lock_current_block();
+  bool does_current_block_fits();
 };

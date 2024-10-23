@@ -54,14 +54,14 @@ void Game::handle_input() {
 
 void Game::move_current_block_left() {
   current_block.move(0, -1);
-  if (is_current_block_outside()) {
+  if (is_current_block_outside() || !does_current_block_fits()) {
     current_block.move(0, 1);
   }
 }
 
 void Game::move_current_block_right() {
   current_block.move(0, 1);
-  if (is_current_block_outside()) {
+  if (is_current_block_outside() || !does_current_block_fits()) {
     current_block.move(0, -1);
   }
 }
@@ -69,7 +69,7 @@ void Game::move_current_block_right() {
 void Game::move_current_block_down() {
   current_block.move(1, 0);
 
-  if (is_current_block_outside()) {
+  if (is_current_block_outside() || !does_current_block_fits()) {
     current_block.move(-1, 0);
     lock_current_block();
   }
@@ -85,7 +85,7 @@ bool Game::is_current_block_outside() {
 
 void Game::rotate_current_block() {
   current_block.rotate();
-  if (is_current_block_outside()) {
+  if (is_current_block_outside() || !does_current_block_fits()) {
     current_block.undo_rotation();
   }
 }
@@ -93,9 +93,16 @@ void Game::rotate_current_block() {
 void Game::lock_current_block() {
   std::vector<CellPosition> tiles = current_block.get_moved_position();
   std::for_each(tiles.begin(), tiles.end(), [&](CellPosition &position) {
-    auto &row = window.surface.at(position.row);
-    row.at(position.column) = current_block.tetromino_shape;
+    window.surface.at(position.row).at(position.column) =
+        current_block.tetromino_shape;
   });
   current_block = next_block;
   next_block = get_random_tetromino();
+}
+
+bool Game::does_current_block_fits() {
+  std::vector<CellPosition> tiles = current_block.get_moved_position();
+  return std::all_of(tiles.begin(), tiles.end(), [&](CellPosition &postion) {
+    return window.is_cell_empty(postion.row, postion.column);
+  });
 }

@@ -39,3 +39,7 @@ bool Window::is_cell_outside(int row, int column) {
     return false;
   return true;
 }
+
+bool Window::is_cell_empty(int row, int column) {
+  return !surface.at(row).at(column);
+}

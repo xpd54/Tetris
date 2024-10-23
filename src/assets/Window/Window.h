@@ -14,6 +14,7 @@ public:
       surface;
   void draw() const;
   bool is_cell_outside(int row, int column);
+  bool is_cell_empty(int row, int column);
 
 private:
   uint32_t window_row;
