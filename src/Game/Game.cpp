@@ -14,12 +14,12 @@ Game::Game() {
 
   // handle audio of game
   InitAudioDevice();
-  game_music = LoadMusicStream("Music/tetris_background_music.mp3");
+  game_music = LoadMusicStream(SOUND_BACKGROUND_MUSIC_FILE);
   PlayMusicStream(game_music);
-  sound_move_reverted = LoadSound("Music/tetris_move_reverted.mp3");
-  sound_move_success = LoadSound("Music/tetris_move_success.mp3");
-  sound_game_over = LoadSound("Music/tetris_game_over.mp3");
-  sound_tetris_clear = LoadSound("Music/tetris_clear.mp3");
+  sound_move_reverted = LoadSound(SOUND_MOVE_REVERTED_FILE);
+  sound_move_success = LoadSound(SOUND_MOVE_SUCCESS_FILE);
+  sound_game_over = LoadSound(SOUND_GAME_OVER_FILE);
+  sound_tetris_clear = LoadSound(SOUND_CLEAR_ROW_FILE);
 }
 
 Game::~Game() {

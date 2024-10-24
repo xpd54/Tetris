@@ -40,3 +40,13 @@
   { 320, 450 }
 #define NEXT_BLOCK_RECTANGLE                                                   \
   { 320, 215, 170, 180 }
+
+// Music
+#define SOUND_BACKGROUND_MUSIC_FILE "Music/tetris_background_music.mp3"
+#define SOUND_MOVE_REVERTED_FILE "Music/tetris_move_reverted.mp3"
+#define SOUND_MOVE_SUCCESS_FILE "Music/tetris_move_success.mp3"
+#define SOUND_GAME_OVER_FILE "Music/tetris_game_over.mp3"
+#define SOUND_CLEAR_ROW_FILE "Music/tetris_clear_row.mp3"
+
+// FONT
+#define FONT_MENLO_REGULAR_FILE "Font/Menlo-Regular.ttf"
