@@ -3,22 +3,24 @@
 Tetromino::Tetromino(uint32_t _cell_size, Rotation _rotation)
     : cell_size(_cell_size), rotation(_rotation) {
   colors = getCellColors();
-  allRotation = {
+  all_rotation = {
       Rotation::Zero,
       Rotation::Ninety,
       Rotation::OneEighty,
       Rotation::TwoSeventy,
   };
 
-  rowPosition = 0;
-  columnPosition = 0;
+  row_position = 0;
+  column_position = 0;
 }
 
 /*
  * GAME_WINDOW_OFF_SET :- add off set for adding empty space in right side of
- * game window to show score for user.
- * CELL_SEPERATOR_SIZE :- is off set for one pixel which we see between the cell
- * of game window.
+ * game window to show score for user. This also get used to draw next block in
+ * user screen section that's why need off_set value.
+ *
+ * CELL_SEPERATOR_SIZE :- is
+ * off set for one pixel which we see between the cell of game window.
  */
 void Tetromino::draw(uint32_t off_set_x, uint32_t off_set_y) const {
   std::vector<CellPosition> tiles = get_moved_position();
@@ -31,8 +33,8 @@ void Tetromino::draw(uint32_t off_set_x, uint32_t off_set_y) const {
 }
 
 void Tetromino::move(int row, int column) {
-  rowPosition += row;
-  columnPosition += column;
+  row_position += row;
+  column_position += column;
 }
 
 std::vector<CellPosition> Tetromino::get_moved_position() const {
@@ -40,23 +42,23 @@ std::vector<CellPosition> Tetromino::get_moved_position() const {
   std::vector<CellPosition> moved_position;
   for (auto &position : tiles) {
     moved_position.push_back(
-        {position.row + rowPosition, position.column + columnPosition});
+        {position.row + row_position, position.column + column_position});
   }
   return moved_position;
 }
 
 Rotation Tetromino::get_next_rotation() {
-  auto it = std::find(allRotation.begin(), allRotation.end(), rotation);
-  if (*it == *allRotation.rbegin()) {
-    return *allRotation.begin();
+  auto it = std::find(all_rotation.begin(), all_rotation.end(), rotation);
+  if (*it == *all_rotation.rbegin()) {
+    return *all_rotation.begin();
   }
   return *(++it);
 }
 
 Rotation Tetromino::get_previous_rotation() {
-  auto it = std::find(allRotation.begin(), allRotation.end(), rotation);
-  if (*it == *allRotation.begin()) {
-    return *allRotation.rbegin();
+  auto it = std::find(all_rotation.begin(), all_rotation.end(), rotation);
+  if (*it == *all_rotation.begin()) {
+    return *all_rotation.rbegin();
   }
   return *(--it);
 }

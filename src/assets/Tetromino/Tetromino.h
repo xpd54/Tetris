@@ -79,9 +79,9 @@ private:
   uint32_t cell_size;
   Rotation rotation;
   std::vector<Color> colors;
-  std::vector<Rotation> allRotation;
+  std::vector<Rotation> all_rotation;
   Rotation get_next_rotation();
   Rotation get_previous_rotation();
-  uint32_t rowPosition;
-  uint32_t columnPosition;
+  uint32_t row_position;
+  uint32_t column_position;
 };

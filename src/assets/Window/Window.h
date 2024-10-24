@@ -5,10 +5,10 @@
 #include <vector>
 class Window {
 public:
+  /* Game play area is devided into 20X10 cells*/
   Window(uint32_t row = NUMBER_OF_ROW_IN_WINDOW,
          uint32_t col = NUMBER_OF_CELL_IN_A_ROW,
          uint32_t cell_size = TETROMINO_CELL_SIZE);
-  void print() const;
   std::array<std::array<uint32_t, NUMBER_OF_CELL_IN_A_ROW>,
              NUMBER_OF_ROW_IN_WINDOW>
       surface;
@@ -26,4 +26,5 @@ private:
   bool is_a_row_full(uint32_t row) const;
   void clear_row(uint32_t row);
   void moved_all_row_down(uint32_t row, uint32_t number_of_time);
+  void print() const;
 };

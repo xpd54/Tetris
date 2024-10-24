@@ -6,6 +6,7 @@ Window::Window(uint32_t row, uint32_t col, uint32_t cell_size)
   initialize_window();
   colors = getCellColors();
 }
+
 void Window::initialize_window() {
   for (auto &row : surface) {
     row.fill(0);
@@ -18,14 +19,16 @@ void Window::print() const {
   }
 }
 
+/* Window surface is 2D array with number of row x cell. (20 x 10). Clumn and
+ * row start from zero which means (x, y) -> (0, 0). Everytime we want to start
+ * drawing the cell rectangle we get next location acordingly. As we leave 1
+ * pixel between the cell so can see the grid pattern we start drawing rect with
+ * + seperator size. Same with leaving 10 pixel in left and top of the game play
+ * area. Lower part of off set is updated in screen size itself.*/
 void Window::draw() const {
-  for (size_t row = 0; row < surface.size(); row++) {
-    for (size_t column = 0; column < surface[row].size(); column++) {
+  for (size_t row = 0; row < surface.size(); ++row) {
+    for (size_t column = 0; column < surface[row].size(); ++column) {
       uint32_t cell_value = surface[row][column];
-      /*
-      Draw each cell as rectangle and set x, y with cell seperator as we set x,
-      y with +1 we reduce width and height with -1
-      */
       DrawRectangle(
           column * window_cell_size + CELL_SEPERATOR_SIZE + GAME_WINDOW_OFF_SET,
           row * window_cell_size + CELL_SEPERATOR_SIZE + GAME_WINDOW_OFF_SET,
