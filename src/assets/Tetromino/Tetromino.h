@@ -73,6 +73,14 @@ public:
   std::vector<CellPosition> get_moved_position() const;
 
   uint32_t tetromino_shape;
+
+  /*Cells are 4X4 grid which represets a block.
+   * 0010
+   * 0010
+   * 0010
+   * 0010
+   * Ex :- IBlock in 90˚ rotation. Each 0 and 1 is one row and column.
+   * */
   std::map<Rotation, std::vector<CellPosition>> cells;
 
 private:

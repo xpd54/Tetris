@@ -1,14 +1,14 @@
 #pragma once
 #include <raylib.h>
 #include <vector>
-extern const Color darkGray;
-extern const Color green;
-extern const Color red;
-extern const Color orange;
-extern const Color yellow;
-extern const Color purple;
-extern const Color cyan;
-extern const Color blue;
-extern const Color lightBlue;
-extern const Color darkBlue;
+constexpr Color darkGray = {26, 31, 40, 255};
+constexpr Color green = {47, 230, 23, 255};
+constexpr Color red = {232, 18, 18, 255};
+constexpr Color orange = {226, 116, 17, 255};
+constexpr Color yellow = {237, 234, 4, 255};
+constexpr Color purple = {166, 0, 247, 255};
+constexpr Color cyan = {21, 204, 209, 255};
+constexpr Color blue = {13, 64, 216, 255};
+constexpr Color lightBlue = {59, 85, 162, 255};
+constexpr Color darkBlue = {44, 44, 127, 255};
 std::vector<Color> getCellColors();

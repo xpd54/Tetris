@@ -1,4 +1,6 @@
 #include "Blocks.h"
+
+/*Block cells holds all rotations values in 4x4 grid.*/
 class LBlock : public Tetromino {
 public:
   LBlock() {
