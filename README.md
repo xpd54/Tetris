@@ -1,6 +1,6 @@
 # Tetris Game with raylib
 
-Tetris game is built on top of [raylib](https://www.raylib.com/index.html) using C++17.
+Tetris game is built on top of [raylib](https://www.raylib.com/index.html) using C++17.</br>
 ![Tetris](/screenshots/screenshot_1.png)
 
 ## Table of Contents
