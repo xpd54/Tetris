@@ -2,10 +2,8 @@
 #include "../../env/constant.h"
 #include "../Attribute/CellPosition.h"
 #include "../Attribute/Color.h"
+#include "../include/raylib.h"
 #include <map>
-#include <raylib.h>
-#include <string>
-#include <utility>
 #include <vector>
 enum class Rotation {
   Zero,

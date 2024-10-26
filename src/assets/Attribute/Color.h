@@ -1,5 +1,5 @@
 #pragma once
-#include <raylib.h>
+#include "../include/raylib.h"
 #include <vector>
 constexpr Color darkGray = {26, 31, 40, 255};
 constexpr Color green = {47, 230, 23, 255};

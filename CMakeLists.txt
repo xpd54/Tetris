@@ -16,17 +16,27 @@ add_executable(
   ${tetris_src}
 )
 
+find_library( IOKIT_LIBRARY IOKit )
+find_library( CORE_VIDEO_LIBRARY CoreVideo )
+find_library( Cocoa_LIBRARY Cocoa )
+find_library( GLUT_LIBRARY GLUT )
+find_library( OpenGL_LIBRARY OpenGL )
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-    /usr/local/include/
+    include/
 )
 
 target_link_directories(${PROJECT_NAME} 
   PUBLIC
-  /usr/local/lib
+  lib/
 )
 
 target_link_libraries(${PROJECT_NAME} 
   PRIVATE
+  ${IOKIT_LIBRARY}
+  ${CORE_VIDEO_LIBRARY}
+  ${Cocoa_LIBRARY}
+  ${GLUT_LIBRARY}
+  ${OpenGL_LIBRARY}
   raylib
 )

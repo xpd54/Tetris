@@ -1,7 +1,7 @@
 #pragma once
 #include "../../env/constant.h"
+#include "../include/raylib.h"
 #include <array>
-#include <raylib.h>
 #include <vector>
 class Window {
 public:
