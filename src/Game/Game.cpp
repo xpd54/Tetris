@@ -190,6 +190,8 @@ void Game::update_score(uint32_t row_cleared, uint32_t moved_down_points) {
   case 3:
     game_score += 500;
     break;
+  case 4:
+    game_score += 600;
   default:
     break;
   }
