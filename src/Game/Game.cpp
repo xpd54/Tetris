@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
+
 Game::Game() {
   // Set Srand one time
   srand(time(NULL));
