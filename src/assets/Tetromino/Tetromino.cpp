@@ -1,5 +1,5 @@
 #include "Tetromino.h"
-
+#include <algorithm>
 Tetromino::Tetromino(uint32_t _cell_size, Rotation _rotation)
     : cell_size(_cell_size), rotation(_rotation) {
   colors = getCellColors();

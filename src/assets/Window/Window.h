@@ -3,6 +3,9 @@
 #include <array>
 #include <raylib.h>
 #include <vector>
+#include <cstdint>
+#include <algorithm>
+
 class Window {
 public:
   /* Game play area is devided into 20X10 cells*/
