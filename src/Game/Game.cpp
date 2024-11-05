@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "../include/raylib.h"
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>

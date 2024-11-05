@@ -3,6 +3,7 @@
 #include "../Attribute/CellPosition.h"
 #include "../Attribute/Color.h"
 #include "../include/raylib.h"
+#include <cstdint>
 #include <map>
 #include <vector>
 enum class Rotation {

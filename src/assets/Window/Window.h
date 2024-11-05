@@ -2,6 +2,7 @@
 #include "../../env/constant.h"
 #include "../include/raylib.h"
 #include <array>
+#include <cstdint>
 #include <vector>
 class Window {
 public:

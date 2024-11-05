@@ -1,5 +1,8 @@
 #include "Window.h"
 #include "../Attribute/Color.h"
+#include "../include/raylib.h"
+#include <algorithm>
+#include <cstdint>
 #include <iostream>
 Window::Window(uint32_t row, uint32_t col, uint32_t cell_size)
     : window_row(row), window_column(col), window_cell_size(cell_size) {
