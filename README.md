@@ -23,6 +23,8 @@ As it doesn't have static libaray of raylib included. Have to install raylib in 
 
 1. Clone the repository.
 2. `brew install raylib` Install raylib in your Mac first.
+   a. To install on Linux follow [official guide](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux)
+   b. TLDR :- Easiest way to do is [install dependency](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux#ubuntu) and [build from source](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux#build-raylib-using-cmake) using cmake.
 3. Move inside the Repo `cd Tetris`
 4. Create a folder in root folder name `mkdir build`
 5. `cd build`
