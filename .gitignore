@@ -24,6 +24,7 @@
 *.lai
 *.la
 *.a
+!lib/libraylib.a
 *.lib
 
 # Executables
@@ -36,3 +37,5 @@ build/*
 **/build/
 
 .DS_Store
+#ignore .cache folder
+.cache/

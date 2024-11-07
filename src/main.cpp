@@ -1,4 +1,5 @@
 #include "Game/Game.h"
+#include "assets/Attribute/Color.h"
 #include "env/constant.h"
 #include "util/EventTrigger.h"
 #include <raylib.h>
