@@ -1,6 +1,7 @@
 #pragma once
 #include "../../env/constant.h"
 #include <array>
+#include <cstdint>
 #include <raylib.h>
 #include <vector>
 #include <cstdint>
