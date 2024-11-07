@@ -2,6 +2,7 @@
 #include "../assets/Tetromino/Blocks.cpp"
 #include "../assets/Window/Window.h"
 #include <raylib.h>
+#include <vector>
 
 class Game {
 public:
