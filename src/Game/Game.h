@@ -1,7 +1,7 @@
 #pragma once
 #include "../assets/Tetromino/Blocks.cpp"
 #include "../assets/Window/Window.h"
-#include "../include/raylib.h"
+#include <raylib.h>
 
 class Game {
 public:

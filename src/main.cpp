@@ -1,8 +1,8 @@
-#include "../include/raylib.h"
 #include "Game/Game.h"
 #include "assets/Attribute/Color.h"
 #include "env/constant.h"
 #include "util/EventTrigger.h"
+#include <raylib.h>
 #include <string>
 int main() {
   /* Initiate game window this includes game playing area as well as user

@@ -1,8 +1,8 @@
 #include "Game.h"
-#include "../include/raylib.h"
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
+#include <raylib.h>
 
 Game::Game() {
   // Set Srand one time

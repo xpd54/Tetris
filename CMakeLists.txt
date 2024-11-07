@@ -16,20 +16,27 @@ add_executable(
   ${tetris_src}
 )
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_BUILD_TYPE Release)
+add_subdirectory(external/raylib)
+
 # find_library( IOKIT_LIBRARY IOKit )
 # find_library( CORE_VIDEO_LIBRARY CoreVideo )
 # find_library( Cocoa_LIBRARY Cocoa )
 # find_library( GLUT_LIBRARY GLUT )
 # find_library( OpenGL_LIBRARY OpenGL )
-target_include_directories(${PROJECT_NAME}
-    PUBLIC
-    include/
-)
+# target_include_directories(${PROJECT_NAME}
+#     PUBLIC
+#     include/
+# )
 
-target_link_directories(${PROJECT_NAME} 
-  PUBLIC
-  lib/
-)
+# target_link_directories(${PROJECT_NAME} 
+#   PUBLIC
+#   lib/
+# )
 
 target_link_libraries(${PROJECT_NAME} 
   PRIVATE

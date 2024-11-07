@@ -1,5 +1,5 @@
 #include "ball/ball.h"
-#include "../include/raylib.h"
+#include <raylib.h>
 int main() {
   const Color darkGreen = {20, 160, 133, 255};
 

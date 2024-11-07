@@ -1,5 +1,5 @@
 #include "EventTrigger.h"
-#include "../include/raylib.h"
+#include <raylib.h>
 double lastUpdatedTime = 0.0;
 
 // ToDo :- Try to optimise this method as it's calling GetTime() 60 time per sec
