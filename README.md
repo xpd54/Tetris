@@ -39,7 +39,8 @@ Resource of this game (Music, Fonts) are outside the build folder, and paths to 
 ##### Testing raylib setup
 
 If compile and build failed first place to look at is setup of raylib.
-inside <b>src/Test/test*raylib_setup.cpp</b> follow same bulding process with creating a build folder. Exicutable \_TestRayLib* should show following screen. ![TestRayLib](/screenshots/screenshot_2.png)
+inside root folder <b>tests/test_raylib_setup.cpp</b> follow same bulding process with creating a build folder. Exicutable <b>TestRayLib</b> should show following screen.
+![TestRayLib](/screenshots/screenshot_2.png)
 
 ## Game Control
 
