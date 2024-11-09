@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "../assets/Tetromino/Blocks.h"
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
