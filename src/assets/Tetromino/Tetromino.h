@@ -1,7 +1,6 @@
 #pragma once
 #include "../../env/constant.h"
 #include "../Attribute/CellPosition.h"
-#include "../Attribute/Color.h"
 #include <cstdint>
 #include <map>
 #include <raylib.h>

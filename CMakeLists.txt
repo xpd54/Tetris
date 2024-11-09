@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.26)
 project(Tetris)
 set(CMAKE_CXX_STANDARD 17)
 file(GLOB tetris_src
-  "src/main.cpp"
   "src/assets/Window/*.cpp"
   "src/assets/Tetromino/*.cpp"
   "src/assets/Attribute/*.cpp"
@@ -11,9 +10,17 @@ file(GLOB tetris_src
   "src/util/*.cpp"
 )
 
+file(GLOB tetris_main
+  "src/main.cpp"
+)
+
 add_executable(
   ${PROJECT_NAME}
-  ${tetris_src}
+  ${tetris_main}
+)
+
+include_directories(
+  external/**/
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -23,7 +30,15 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_BUILD_TYPE Release)
 add_subdirectory(external/raylib)
 
+# Split main and other source into 2 and link again.
+# where tetrislib should get used in testing.
+add_library(tetris_src STATIC ${tetris_src})
+target_link_libraries(tetris_src raylib)
+
 target_link_libraries(${PROJECT_NAME} 
   PRIVATE
-  raylib
+  tetris_src
 )
+
+enable_testing()
+add_subdirectory(tests)
