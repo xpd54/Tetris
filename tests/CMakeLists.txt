@@ -6,6 +6,10 @@ file(GLOB test_src
 )
 
 include_directories(
+  ../src/assets/Attribute/
+  ../src/assets/Tetromino/
+  ../src/assets/Window/
+  ../src/Game/
   ../external/**/
 )
 
