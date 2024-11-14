@@ -29,11 +29,12 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_BUILD_TYPE Release)
 add_subdirectory(external/raylib)
-
+set(BENCHMARK_ENABLE_GTEST_TESTS OFF)
+add_subdirectory(benchmark/google_benchmark)
 # Split main and other source into 2 and link again.
 # where tetrislib should get used in testing.
 add_library(tetris_src STATIC ${tetris_src})
-target_link_libraries(tetris_src raylib)
+target_link_libraries(tetris_src raylib benchmark::benchmark)
 
 target_link_libraries(${PROJECT_NAME} 
   PRIVATE
