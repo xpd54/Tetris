@@ -29,7 +29,6 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_BUILD_TYPE Release)
 add_subdirectory(external/raylib)
-
 # Split main and other source into 2 and link again.
 # where tetrislib should get used in testing.
 add_library(tetris_src STATIC ${tetris_src})
