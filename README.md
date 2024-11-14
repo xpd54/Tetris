@@ -23,17 +23,17 @@ As it doesn't have static libaray of raylib included. Have to install raylib in 
 
 1. Clone the repository.
 2. `brew install raylib` Install raylib in your Mac first.
-   a. To install on Linux follow [official guide](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux)
-   b. TLDR :- Easiest way to do is [install dependency](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux#ubuntu) and [build from source](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux#build-raylib-using-cmake) using cmake.
-3. Move inside the Repo `cd Tetris`
-4. Create a folder in root folder name `mkdir build`
-5. `cd build`
-6. `cmake .. && make`
-   a. You set `BUILD_BENCHMARK` `BUILD_TESTS` to build unit test and benchmark (uses googlebenchmark and googletest)
-   b. `cmake -DBUILD_TESTS=ON -DBUILD_BENCHMARK=ON .. && make` to build both test and benchmark
-   c. To run unit test `./Tetris_tests`
-   d. To run benchmark `./Tetris_benchmark`
-7. It will create an executable name <b>Tetris</b> which can be run with `./Tetris`
+   - To install on Linux follow [official guide](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux)
+   - TLDR :- Easiest way to do is [install dependency](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux#ubuntu) and [build from source](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux#build-raylib-using-cmake) using cmake.
+4. Move inside the Repo `cd Tetris`
+5. Create a folder in root folder name `mkdir build`
+6. `cd build`
+7. `cmake .. && make`
+   - You set `BUILD_BENCHMARK` `BUILD_TESTS` to build unit test and benchmark (uses googlebenchmark and googletest)
+   - `cmake -DBUILD_TESTS=ON -DBUILD_BENCHMARK=ON .. && make` to build both test and benchmark
+   - To run unit test `./Tetris_tests`
+   - To run benchmark `./Tetris_benchmark`
+8. It will create an executable name <b>Tetris</b> which can be run with `./Tetris`
 
 Resource of this game (Music, Fonts) are outside the build folder, and paths to load these are relative. To get music and correct font for score copy <b>Tetris</b> executable to root folder and run again.
 
