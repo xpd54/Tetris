@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
+#include <future>
 #include <raylib.h>
 
 Game::Game() {
@@ -98,10 +99,10 @@ void Game::move_current_block_left() {
   current_block.move(0, -1);
   if (is_current_block_outside() || !does_current_block_fits()) {
     current_block.move(0, 1);
-    PlaySound(sound_move_reverted);
+    play_sound_in_background(sound_move_reverted);
     return;
   }
-  PlaySound(sound_move_success);
+  play_sound_in_background(sound_move_success);
 }
 
 void Game::move_current_block_right() {
@@ -110,10 +111,10 @@ void Game::move_current_block_right() {
   current_block.move(0, 1);
   if (is_current_block_outside() || !does_current_block_fits()) {
     current_block.move(0, -1);
-    PlaySound(sound_move_reverted);
+    play_sound_in_background(sound_move_reverted);
     return;
   }
-  PlaySound(sound_move_success);
+  play_sound_in_background(sound_move_success);
 }
 
 void Game::move_current_block_down() {
@@ -132,10 +133,10 @@ void Game::rotate_current_block() {
   current_block.rotate();
   if (is_current_block_outside() || !does_current_block_fits()) {
     current_block.undo_rotation();
-    PlaySound(sound_move_reverted);
+    play_sound_in_background(sound_move_reverted);
     return;
   }
-  PlaySound(sound_move_success);
+  play_sound_in_background(sound_move_success);
 }
 
 bool Game::is_current_block_outside() {
@@ -155,12 +156,12 @@ void Game::lock_current_block() {
   current_block = next_block;
   if (!does_current_block_fits()) {
     game_over = true;
-    PlaySound(sound_game_over);
+    play_sound_in_background(sound_game_over);
   }
   next_block = get_random_block();
   uint32_t row_cleared = window.clear_full_row();
   if (row_cleared) {
-    PlaySound(sound_tetris_clear);
+    play_sound_in_background(sound_tetris_clear);
     update_score(row_cleared, 0);
   }
 }
@@ -198,4 +199,9 @@ void Game::update_score(uint32_t row_cleared, uint32_t moved_down_points) {
     break;
   }
   game_score += moved_down_points;
+}
+
+void Game::play_sound_in_background(Sound &sound) {
+  std::future<void> play_sound =
+      std::async(std::launch::async, [&]() { PlaySound(sound); });
 }
