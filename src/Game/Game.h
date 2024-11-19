@@ -24,11 +24,13 @@ private:
   Tetromino get_random_block();
   bool is_current_block_outside();
   void rotate_current_block();
+  void extracted();
   void lock_current_block();
   void move_current_block_left();
   void move_current_block_right();
   bool does_current_block_fits();
   void update_score(uint32_t row_cleared, uint32_t moved_down_points);
+  void play_sound_in_background(Sound &sound);
   void reset_game();
   Sound sound_move_reverted;
   Sound sound_move_success;
